@@ -1,3 +1,3 @@
-# easy version of Othello1
+# easy version of Othello
 
 print("You have entered easy mode")
