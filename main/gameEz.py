@@ -3,6 +3,7 @@
 import turtle
 print("You have entered easy mode")
 sc = turtle.Screen()
+sc.tracer(3)
    
 # create turtle
 pen = turtle.Turtle()
@@ -13,12 +14,13 @@ def drawSquare():
     pen.forward(40)
     pen.left(90)
   pen.forward(40)
+
+def drawCircle():
+  pen.down()
+  pen.circle(radius=13)
    
 # screen size
 sc.setup(600, 600)
-       
-# turtle speed
-pen.speed(100)
        
 # loops for board
 for i in range(8):
@@ -26,7 +28,7 @@ for i in range(8):
   pen.up()
        
 # position for row
-  pen.setpos(-170, -130 + 40 * i)
+  pen.setpos(-165, -130 + 40 * i)
        
    # ready to draw
   pen.down()
@@ -47,7 +49,38 @@ for i in range(8):
     drawSquare()
     # stop filling
     pen.end_fill()
-       
-    # hide the turtle
+
+# drawing init circle(white)
+col = "white"
+pen.up()
+pen.setpos(14,37)
+pen.fillcolor(col)
+pen.begin_fill()
+drawCircle()
+pen.end_fill()
+pen.up()
+pen.setpos(-25,-4)
+pen.fillcolor(col)
+pen.begin_fill()
+drawCircle()
+pen.end_fill()
+
+# drawing init circle(black)
+col = "black"
+pen.up()
+pen.setpos(-25,37)
+pen.fillcolor(col)
+pen.begin_fill()
+drawCircle()
+pen.end_fill()
+pen.up()
+pen.setpos(14,-4)
+pen.fillcolor(col)
+pen.begin_fill()
+drawCircle()
+pen.end_fill()
+
+# hide the turtle
 pen.hideturtle()
+sc.update()
 turtle.done()
