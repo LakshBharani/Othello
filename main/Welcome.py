@@ -17,14 +17,20 @@ print('''
             ##################
 ''')
 diff = int(input("Enter difficulty level(1/2): "))
+while diff != 1 or 2:
+    # user picks difficulty
+    if diff == 1:
+        print("Loading...")
+        import gameEz
+        break
+    elif diff == 2:
+        print("Loading...")
+        import gameHard
+        break
+    else:
+        print("Invalid option...try again")
+        diff = int(input("Enter difficulty level(1/2): "))
 
-# user picks difficulty
-if diff == 1:
-    print("Loading...")
-    import gameEz
-elif diff == 2:
-    print("Loading...")
-    import gameHard
 
 # filled coordinates
 reserved_black = [(e,y[5]),(d,y[4])]
