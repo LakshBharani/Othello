@@ -5,9 +5,9 @@ Project has 2 game modes: Easy and Hard
 Akshay, Laksh, Nishtha, Sharvari
 # Data Types & Modules to be used:
 * Booleans
-Numeric 
-Random
-Lists
-Turtle 
-Math
+* Numeric 
+* Random
+* Lists
+* Turtle 
+* Math
 
