@@ -9,7 +9,6 @@ pen = turtle.Turtle()
    
 # method to draw square
 def drawSquare():
-   
   for i in range(4):
     pen.forward(40)
     pen.left(90)
