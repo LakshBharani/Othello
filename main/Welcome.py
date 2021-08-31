@@ -17,6 +17,7 @@ print('''
 ''')
 diff = int(input("Enter difficulty level(1/2): "))
 
+# user picks difficulty
 if diff == 1:
     print("Loading...")
     import gameEz
