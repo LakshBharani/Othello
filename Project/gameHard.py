@@ -1,0 +1,1 @@
+print("You have entered hard mode")
