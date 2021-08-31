@@ -1,3 +1,5 @@
+# Welcome screen
+
 print('''
             Welcome to Othello
             ******************
