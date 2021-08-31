@@ -1,7 +1,7 @@
 # Term1_proj_Othello
 * Term 1 project - Othello using turtle in python
-* Project has 2 game modes: Easy and Hard
-* User can 1v1 the bot by entering the coordinates of the piece to be placed
+* The bot will have two difficulty modes which the user can choose at the beginning of the program - Beginner and Advanced
+* User can 1v1 the bot by entering the coordinates of the disk
 # Group:
 Akshay, Laksh, Nishtha, Sharvari
 # Data Types & Modules to be used:
