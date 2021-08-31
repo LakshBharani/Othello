@@ -26,7 +26,7 @@ for i in range(8):
   pen.up()
        
 # position for row
-  pen.setpos(-170, -130 + 40 * i)
+  pen.setpos(-165, -130 + 40 * i)
        
    # ready to draw
   pen.down()
