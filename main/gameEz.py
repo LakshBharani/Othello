@@ -1,7 +1,11 @@
 # easy version of Othello
 
 import turtle
-print("You have entered easy mode")
+
+xCord = [a,b,c,d,e,f,g,h]= [0,0,0,-25,14,0,0,0]
+yCord = [0,0,0,0,-4,37,0,0,0]
+
+print("You have entered Easy mode")
 sc = turtle.Screen()
 sc.tracer(3)
    
@@ -14,10 +18,6 @@ def drawSquare():
     pen.forward(40)
     pen.left(90)
   pen.forward(40)
-
-def drawCircle():
-  pen.down()
-  pen.circle(radius=13)
    
 # screen size
 sc.setup(600, 600)
@@ -50,16 +50,21 @@ for i in range(8):
     # stop filling
     pen.end_fill()
 
+def drawCircle():
+  pen.down()
+  pen.circle(radius=13)
+
 # drawing init circle(white)
 col = "white"
 pen.up()
-pen.setpos(14,37)
+pen.setpos(e,yCord[5])
 pen.fillcolor(col)
 pen.begin_fill()
 drawCircle()
 pen.end_fill()
+
 pen.up()
-pen.setpos(-25,-4)
+pen.setpos(d,yCord[4])
 pen.fillcolor(col)
 pen.begin_fill()
 drawCircle()
@@ -68,13 +73,14 @@ pen.end_fill()
 # drawing init circle(black)
 col = "black"
 pen.up()
-pen.setpos(-25,37)
+pen.setpos(d,yCord[5])
 pen.fillcolor(col)
 pen.begin_fill()
 drawCircle()
 pen.end_fill()
+
 pen.up()
-pen.setpos(14,-4)
+pen.setpos(e,yCord[4])
 pen.fillcolor(col)
 pen.begin_fill()
 drawCircle()

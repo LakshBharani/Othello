@@ -1,5 +1,5 @@
 # Welcome screen
-
+ 
 print('''
             Welcome to Othello
             ******************
@@ -20,3 +20,6 @@ if diff == 1:
 elif diff == 2:
     print("Loading...")
     import gameHard
+
+
+reserved = [(14,37),(-25,-4),(-25,37),(14,-4)]
