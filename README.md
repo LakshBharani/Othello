@@ -1,4 +1,4 @@
-# Comp_proj_Othello
+# Term1_proj_Othello
 * Term 1 project - Othello using turtle in python
 * Project has 2 game modes: Easy and Hard
 # Group:
