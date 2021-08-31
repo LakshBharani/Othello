@@ -9,5 +9,5 @@ y = [0,-124,-84,-44,-4,36,76,116,156]
 print("You have entered Hard mode")
 
 # method to draw board
-from gameEz import drawBoard
+from models import drawBoard
 drawBoard()
