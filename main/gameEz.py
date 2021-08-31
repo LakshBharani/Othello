@@ -2,8 +2,8 @@
 
 import turtle
 
-xCord = [a,b,c,d,e,f,g,h]= [0,0,0,-25,14,0,0,0]
-yCord = [0,0,0,0,-4,37,0,0,0]
+x = [a,b,c,d,e,f,g,h]= [0,0,0,-25,14,0,0,0]
+y = [0,0,0,0,-4,37,0,0,0]
 
 print("You have entered Easy mode")
 sc = turtle.Screen()
@@ -57,14 +57,14 @@ def drawCircle():
 # drawing init circle(white)
 col = "white"
 pen.up()
-pen.setpos(e,yCord[5])
+pen.setpos(e,y[5])
 pen.fillcolor(col)
 pen.begin_fill()
 drawCircle()
 pen.end_fill()
 
 pen.up()
-pen.setpos(d,yCord[4])
+pen.setpos(d,y[4])
 pen.fillcolor(col)
 pen.begin_fill()
 drawCircle()
@@ -73,14 +73,14 @@ pen.end_fill()
 # drawing init circle(black)
 col = "black"
 pen.up()
-pen.setpos(d,yCord[5])
+pen.setpos(d,y[5])
 pen.fillcolor(col)
 pen.begin_fill()
 drawCircle()
 pen.end_fill()
 
 pen.up()
-pen.setpos(e,yCord[4])
+pen.setpos(e,y[4])
 pen.fillcolor(col)
 pen.begin_fill()
 drawCircle()

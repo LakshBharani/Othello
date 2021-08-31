@@ -1,5 +1,8 @@
 # Welcome screen
- 
+
+x = [a,b,c,d,e,f,g,h]= [0,0,0,-25,14,0,0,0]
+y = [0,0,0,0,-4,37,0,0,0]
+
 print('''
             Welcome to Othello
             ******************
@@ -22,4 +25,4 @@ elif diff == 2:
     import gameHard
 
 
-reserved = [(14,37),(-25,-4),(-25,37),(14,-4)]
+reserved = [(e,37),(d,-4),(d,37),(e,-4)]
