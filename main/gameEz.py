@@ -110,4 +110,3 @@ def drawBoard():
   sc.update()
   turtle.done()
 drawBoard()
-
