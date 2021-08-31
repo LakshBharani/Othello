@@ -49,6 +49,21 @@ for i in range(8):
     drawSquare()
     # stop filling
     pen.end_fill()
+pen.up()
+
+# printing numbers on y axis
+ytemp = -115
+for i in range (1,9):
+  pen.setpos(-185,ytemp)
+  pen.write(i)
+  ytemp+=40
+
+# printing numbers on x axis
+xtemp = -145
+for i in range (1,9):
+  pen.setpos(xtemp,200)
+  pen.write(chr(i+64))
+  xtemp+=40
 
 def drawCircle():
   pen.down()

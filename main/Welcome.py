@@ -24,5 +24,5 @@ elif diff == 2:
     print("Loading...")
     import gameHard
 
-
-reserved = [(e,37),(d,-4),(d,37),(e,-4)]
+# reserved coordinates
+reserved = [(e,y[5]),(d,y[4]),(d,y[5]),(e,y[4])]
