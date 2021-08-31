@@ -4,5 +4,10 @@ Project has 2 game modes: Easy and Hard
 # Group:
 Akshay, Laksh, Nishtha, Sharvari
 # Data Types & Modules to be used:
-Booleans, Numeric, Random, Lists, Turtle, Math
+* Booleans
+Numeric 
+Random
+Lists
+Turtle 
+Math
 
