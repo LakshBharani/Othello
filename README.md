@@ -1,8 +1,9 @@
 # Term1_proj_Othello
-* A local multiplayer game made on turtle.
-* Minimum number of players - 1.
-* Maximum number of players - 2.
-* Disks can be placed on the board by entering the coordinates
+* The player will have two options - Single player and Double player.
+* Single Player - plays the game with the computer (Difficulty level: Easy).
+* Multiplayer - two people play against each other.
+* At the end of each round,  the scoreboard will be displayed.
+
 # Group:
 Akshay, Laksh, Nishtha, Sharvari
 # Data Types & Modules to be used:
