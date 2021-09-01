@@ -1,7 +1,8 @@
 # Term1_proj_Othello
-* Term 1 project - Othello using turtle in python
-* The bot will have two difficulty modes which the user can choose at the beginning of the program - Beginner and Advanced
-* User can 1v1 the bot by entering the coordinates of the disk
+* A local multiplayer game made on turtle.
+* Minimum number of players - 1.
+* Maximum number of players - 2.
+* Disks can be placed on the board by entering the coordinates
 # Group:
 Akshay, Laksh, Nishtha, Sharvari
 # Data Types & Modules to be used:
