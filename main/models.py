@@ -1,4 +1,4 @@
-# object models
+# all object models
 import turtle
 
 # coordinates of pieces

@@ -1,4 +1,4 @@
-# easy version of Othello
+# 1 player mode (bot vs player1)
 
 import turtle
 

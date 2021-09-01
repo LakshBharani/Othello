@@ -1,4 +1,4 @@
-# hard version of Othello
+# 2 player mode (player1 vs player2)
 
 import turtle
 
