@@ -62,7 +62,7 @@ def drawBoard():
   # printing numbers on x axis
   xtemp = -145
   for i in range (1,9):
-    pen.setpos(xtemp,200)
+    pen.setpos(xtemp,-155)
     pen.write(chr(i+64))
     xtemp+=40
 
