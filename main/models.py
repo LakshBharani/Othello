@@ -30,11 +30,9 @@ def drawBoard():
 
   # position for row
     pen.setpos(-165, -130 + 40 * i)
-
-     # ready to draw
     pen.down()
 
-  # row
+  # coloring the squares
     for j in range(8):
 
       # color for squares
@@ -48,6 +46,7 @@ def drawBoard():
 
       # method to draw square
       drawSquare()
+      
       # stop filling
       pen.end_fill()
   pen.up()

@@ -9,13 +9,12 @@ print('''
             Welcome to Othello
             ******************
 
-            ##################
-            #    1 Player    #
-            ##################
-
-            ##################
-            #    2 Player    #
-            ##################
+            ==================
+            |    1 Player    |
+            ==================
+            ==================
+            |    2 Player    |
+            ==================
 ''')
 # choice given to user
 diff = int(input("Number of players (1/2): "))
@@ -35,7 +34,6 @@ while diff != 1 or 2:
     else:
         print("Invalid option...try again")
         diff = int(input("Number of players (1/2): "))
-
 
 # filled coordinates
 reserved_white = [(e,y[5]),(d,y[4])]
