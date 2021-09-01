@@ -34,7 +34,7 @@ while diff != 1 or 2:
 
     else:
         print("Invalid option...try again")
-        diff = int(input("Enter difficulty level(1/2): "))
+        diff = int(input("Number of players (1/2): "))
 
 
 # filled coordinates
