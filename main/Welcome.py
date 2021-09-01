@@ -9,23 +9,23 @@ print('''
             ******************
 
             ##################
-            #     Easy(1)    #
+            #    1 Player    #
             ##################
 
             ##################
-            #     Hard(2)    #
+            #    2 Player    #
             ##################
 ''')
-diff = int(input("Enter difficulty level(1/2): "))
+diff = int(input("Number of players (1/2): "))
 while diff != 1 or 2:
     # user picks difficulty
     if diff == 1:
         print("Loading...")
-        import gameEz
+        import game1p
         break
     elif diff == 2:
         print("Loading...")
-        import gameHard
+        import game2p
         break
     else:
         print("Invalid option...try again")
