@@ -21,7 +21,7 @@ print('''
 diff = int(input("Number of players (1/2): "))
 while diff != 1 or 2:
 
-    # user picks game mode
+    # checking users choice
     if diff == 1:
         print("Loading...")
         import game1p # single player mode
