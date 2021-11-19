@@ -1,4 +1,4 @@
-# 1 player mode (bot vs player1)
+# 1 player mode (Player vs Computer)
 
 import turtle
 
@@ -115,9 +115,10 @@ def drawBoard():
     x_coord = coord[0]
     global y_coord
     y_coord = coord[1]
-
     empty_spaces_white -= 1
     playerMove_white()
+  else:
+    print("No more moves left")
 
   # End editing board
   sc.update()
