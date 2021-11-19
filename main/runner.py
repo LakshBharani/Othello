@@ -6,8 +6,8 @@ import turtle
 global x
 x = {"a":-145, "b":-105, "c":-65, "d":-25, "e":15, "f":55, "g":95, "h":135}
 global y
-# y = [None,-124,-84,-44,-4,36,76,116,156]
 y = {"1":-124, "2": -84, "3":-44, "4":-4, "5":36, "6":76, "7":116, "8":156}
+
 
 #1 -----------------------------------------------------------------------------------------------------------
 def drawBoard():
@@ -33,7 +33,6 @@ def drawBoard():
 
   # loops for board
   for i in range(8):
-
     pen.up()
 
   # position for row
@@ -119,12 +118,11 @@ def drawBoard():
     y_coord = coord[1]
 
     empty_spaces_white -= 1
-    drawCircle()
+    playerMove_white()
 
   # End editing board
   sc.update()
   turtle.mainloop()
-
 
 #2 -----------------------------------------------------------------------------------------------------------
 def singlePlayer():
@@ -138,19 +136,19 @@ def doublePlayer():
     drawBoard()
 
 #3 -----------------------------------------------------------------------------------------------------------
-def drawCircle():
-  
-  pen.down()
-  pen.circle(radius=13)
+def playerMove_white():
+  def drawCircle():
+    pen.down()
+    pen.circle(radius=13)
 
-# drawing circle(white)
-col = "white"
-pen.up()
-pen.setpos(x[x_coord], y[y_coord])
-pen.fillcolor(col)
-pen.begin_fill()
-drawCircle()
-pen.end_fill()
+  # drawing circle(white)
+  col = "white"
+  pen.up()
+  pen.setpos(x[x_coord], y[y_coord])
+  pen.fillcolor(col)
+  pen.begin_fill()
+  drawCircle()
+  pen.end_fill()
 
 #4 -----------------------------------------------------------------------------------------------------------
 def main():
