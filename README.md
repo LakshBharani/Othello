@@ -13,8 +13,10 @@ Akshay, Laksh, Nishtha, Sharvari
 * Numeric 
 * Random
 * Lists
+* Dictionaries
 * Turtle
 # Preview:
-https://bonaludo.files.wordpress.com/2018/01/othello-kraw-niezrow-1.png?w=427&h=424
+<img src="https://user-images.githubusercontent.com/80910691/144286646-299d689d-7098-435a-87f0-ef922df8d66d.png" height="400"></a>
+
 # How to play:
 https://www.youtube.com/watch?v=xDnYEOsjZnM
