@@ -1,7 +1,7 @@
 # 2 player mode (Player vs Computer)
 
 import turtle
-from colorama import Fore, Back, Style
+from colorama import Fore
 
 global whiteTurn
 whiteTurn = True
@@ -150,13 +150,11 @@ def startGame():
 
         # error message for placing piece on filled square  
         else:
-          print(Fore.RED + "Invalid move: Square filled by another piece")
-          print(Style.RESET_ALL, end = "")
+          print(Fore.RED + "Invalid move: Square filled by another piece" + Fore.RESET)
 
       # error message for empty input
       else:
-        print(Fore.RED + "Invalid move: Square filled by another piece")
-        print(Style.RESET_ALL, end = "")
+        print(Fore.RED + "Invalid move: Square filled by another piece" + Fore.RESET)
 
       # Black player's turn
     else:
@@ -174,14 +172,11 @@ def startGame():
 
         # error message for placing piece on filled square  
         else:
-          print(Fore.RED + "Invalid move: Square filled by another piece")
-          print(Style.RESET_ALL, end = "")
+          print(Fore.RED + "Invalid move: Square filled by another piece" + Fore.RESET)
 
       # error message for empty input
       else:
-        print(Fore.RED + "Invalid move: Square filled by another piece")
-        print(Style.RESET_ALL, end = "")
-
+        print(Fore.RED + "Invalid move: Square filled by another piece" + Fore.RESET)
 #3 -----------------------------------------------------------------------------------------------------------
 def goToBoard():
     # terminal confirmation
