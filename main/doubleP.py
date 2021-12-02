@@ -150,11 +150,11 @@ def startGame():
 
         # error message for placing piece on filled square  
         else:
-          print(Fore.RED + "Invalid move: Square filled by another piece" + Fore.RESET)
+          print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
 
       # error message for empty input
       else:
-        print(Fore.RED + "Invalid move: Square filled by another piece" + Fore.RESET)
+        print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
 
       # Black player's turn
     else:
@@ -172,11 +172,11 @@ def startGame():
 
         # error message for placing piece on filled square  
         else:
-          print(Fore.RED + "Invalid move: Square filled by another piece" + Fore.RESET)
+          print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
 
       # error message for empty input
       else:
-        print(Fore.RED + "Invalid move: Square filled by another piece" + Fore.RESET)
+        print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
 #3 -----------------------------------------------------------------------------------------------------------
 def goToBoard():
     # terminal confirmation
