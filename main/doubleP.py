@@ -14,7 +14,6 @@ y = {"1":-124, "2": -84, "3":-44, "4":-4, "5":36, "6":76, "7":116, "8":156}
 
 #1 -----------------------------------------------------------------------------------------------------------
 def drawBoard():
-
   sc = turtle.Screen()
   sc.tracer(3)
 
@@ -32,6 +31,10 @@ def drawBoard():
   # screen size
   sc.setup(600, 600)
 
+  # show rules page on turtle screen
+  showRules()
+
+# start drawing game board once rules read
   # loops for board
   for i in range(8):
     pen.up()
@@ -125,7 +128,6 @@ def startGame():
   filled_spaces_white = ["d4", "e5"]
   filled_spaces_black = ["d5", "e4"]
 
-
   while empty_spaces_white != 0 or empty_spaces_black != 0:
     global x_coord
     global y_coord
@@ -133,8 +135,9 @@ def startGame():
 
     # White player's turn
     if whiteTurn == True:
-      print("------- White -------")
-      coord = input("Enter coordinates: ")
+      print(Fore.YELLOW + "------- White -------" + Fore.RESET)
+      coord = input("Enter coordinates: " + Fore.YELLOW)
+      print(Fore.RESET, end="")
       if len(coord) != 0:
         x_coord = coord[0]
         y_coord = coord[1]
@@ -146,18 +149,19 @@ def startGame():
 
         # error message for placing piece on filled square  
         else:
-          print(Fore.RED + "Invalid move...Try again")
+          print(Fore.RED + "Invalid move: Square filled by another piece")
           print(Style.RESET_ALL, end = "")
 
       # error message for empty input
       else:
-        print(Fore.RED + "Invalid move...Try again")
+        print(Fore.RED + "Invalid move: Square filled by another piece")
         print(Style.RESET_ALL, end = "")
 
       # Black player's turn
     else:
-      print("------- Black -------")
-      coord = input("Enter coordinates: ")
+      print(Fore.BLUE + "------- Black -------" + Fore.RESET)
+      coord = input("Enter coordinates: " + Fore.BLUE)
+      print(Fore.RESET, end="")
       if len(coord) != 0:
         x_coord = coord[0]
         y_coord = coord[1]
@@ -169,21 +173,38 @@ def startGame():
 
         # error message for placing piece on filled square  
         else:
-          print(Fore.RED + "Invalid move...Try again")
+          print(Fore.RED + "Invalid move: Square filled by another piece")
           print(Style.RESET_ALL, end = "")
 
       # error message for empty input
       else:
-        print(Fore.RED + "Invalid move...Try again")
+        print(Fore.RED + "Invalid move: Square filled by another piece")
         print(Style.RESET_ALL, end = "")
 
-#2 -----------------------------------------------------------------------------------------------------------
-def doublePlayer():
-    # terminal confirmation
-    print("You have entered 2 Player Mode")
-    drawBoard()
-
 #3 -----------------------------------------------------------------------------------------------------------
+def goToBoard():
+    # terminal confirmation
+    print('Loading...')
+    print(Fore.GREEN + "You have entered 2 Player Mode")
+    print(Fore.RESET, end="")
+
+#4 -----------------------------------------------------------------------------------------------------------
+def showRules():
+  start = False
+  while start == False:
+    pen.up()
+    pen.setpos(-165,100)
+
+    # TO DO: Fill in rules
+    pen.write("")
+    pen.hideturtle()
+    confirmStart = input("Enter (y) once you have read the rules: ")
+    if confirmStart == "y":
+      goToBoard()
+      start = True
+
+
+#5 -----------------------------------------------------------------------------------------------------------
 def playerMove_white():
   def drawCircle():
     pen.down()

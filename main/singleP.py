@@ -1,6 +1,10 @@
-# 1 player mode (Player vs Computer)
+# 2 player mode (Player vs Player)
 
 import turtle
+from colorama import Fore, Back, Style
+
+global whiteTurn
+whiteTurn = True
 
 # coordinates of pieces
 global x
@@ -10,9 +14,6 @@ y = {"1":-124, "2": -84, "3":-44, "4":-4, "5":36, "6":76, "7":116, "8":156}
 
 #1 -----------------------------------------------------------------------------------------------------------
 def drawBoard():
-  empty_spaces_white = 30
-  empty_spaces_black = 30
-
   sc = turtle.Screen()
   sc.tracer(3)
 
@@ -30,6 +31,10 @@ def drawBoard():
   # screen size
   sc.setup(600, 600)
 
+  # show rules page on turtle screen
+  showRules()
+
+# start drawing game board once rules read
   # loops for board
   for i in range(8):
     pen.up()
@@ -108,29 +113,98 @@ def drawBoard():
   pen.end_fill()
   pen.hideturtle()
 
-  # placing more pieces
-  while empty_spaces_white != 0:
-    coord = input("Enter coordinates: ")
-    global x_coord
-    x_coord = coord[0]
-    global y_coord
-    y_coord = coord[1]
-    empty_spaces_white -= 1
-    playerMove_white()
-  else:
-    print("No more moves left")
+  # Placing more pieces
+  startGame()
 
   # End editing board
   sc.update()
   turtle.mainloop()
 
 #2 -----------------------------------------------------------------------------------------------------------
-def singlePlayer():
-    # terminal confirmation
-    print("You have entered Single Player Mode")
-    drawBoard()
+def startGame():
+  empty_spaces_white = 30
+  empty_spaces_black = 30
+
+  filled_spaces_white = ["d4", "e5"]
+  filled_spaces_black = ["d5", "e4"]
+
+  while empty_spaces_white != 0 or empty_spaces_black != 0:
+    global x_coord
+    global y_coord
+    global whiteTurn
+
+    # White player's turn
+    if whiteTurn == True:
+      print(Fore.YELLOW + "------- White -------" + Fore.RESET)
+      coord = input("Enter coordinates: " + Fore.YELLOW)
+      print(Fore.RESET, end="")
+      if len(coord) != 0:
+        x_coord = coord[0]
+        y_coord = coord[1]
+        if (x_coord+y_coord) not in filled_spaces_white and (x_coord+y_coord) not in filled_spaces_black:
+          playerMove_white()
+          empty_spaces_white -= 1
+          filled_spaces_white.append(x_coord+y_coord)
+          whiteTurn = False
+
+        # error message for placing piece on filled square  
+        else:
+          print(Fore.RED + "Invalid move: Square filled by another piece")
+          print(Style.RESET_ALL, end = "")
+
+      # error message for empty input
+      else:
+        print(Fore.RED + "Invalid move: Square filled by another piece")
+        print(Style.RESET_ALL, end = "")
+
+      # Black player's turn
+    else:
+      print(Fore.BLUE + "------- Black -------" + Fore.RESET)
+      coord = input("Enter coordinates: " + Fore.BLUE)
+      print(Fore.RESET, end="")
+      if len(coord) != 0:
+        x_coord = coord[0]
+        y_coord = coord[1]
+        if (x_coord+y_coord) not in filled_spaces_black and (x_coord+y_coord) not in filled_spaces_white:
+          playerMove_black()
+          empty_spaces_black -= 1
+          filled_spaces_black.append(x_coord+y_coord)
+          whiteTurn = True
+
+        # error message for placing piece on filled square  
+        else:
+          print(Fore.RED + "Invalid move: Square filled by another piece")
+          print(Style.RESET_ALL, end = "")
+
+      # error message for empty input
+      else:
+        print(Fore.RED + "Invalid move: Square filled by another piece")
+        print(Style.RESET_ALL, end = "")
 
 #3 -----------------------------------------------------------------------------------------------------------
+def goToBoard():
+    # terminal confirmation
+    print('Loading...')
+    print(Fore.GREEN + "You have entered 2 Player Mode")
+    print(Fore.RESET, end="")
+
+#4 -----------------------------------------------------------------------------------------------------------
+def showRules():
+  start = False
+  while start == False:
+    pen.up()
+    pen.setpos(-165,100)
+
+    # TO DO: Fill in rules
+    pen.write("")
+    pen.hideturtle()
+    confirmStart = input("Enter (y) once you have read the rules: ")
+    if confirmStart == "y":
+      goToBoard()
+      start = True
+
+
+#5 -----------------------------------------------------------------------------------------------------------
 def playerMove_white():
   def drawCircle():
     pen.down()
@@ -138,6 +212,20 @@ def playerMove_white():
 
   # drawing circle(white)
   col = "white"
+  pen.up()
+  pen.setpos(x[x_coord], y[y_coord])
+  pen.fillcolor(col)
+  pen.begin_fill()
+  drawCircle()
+  pen.end_fill()
+
+def playerMove_black():
+  def drawCircle():
+    pen.down()
+    pen.circle(radius=13)
+
+  # drawing circle(white)
+  col = "black"
   pen.up()
   pen.setpos(x[x_coord], y[y_coord])
   pen.fillcolor(col)
