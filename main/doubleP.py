@@ -1,4 +1,4 @@
-# 2 player mode (Player vs Player)
+# Single player mode (Player vs Computer)
 
 import turtle
 from colorama import Fore, Back, Style
@@ -140,8 +140,9 @@ def startGame():
       print(Fore.RESET, end="")
       if len(coord) != 0:
         x_coord = coord[0]
-        y_coord = coord[1]
-        if (x_coord+y_coord) not in filled_spaces_white and (x_coord+y_coord) not in filled_spaces_black:
+        y_coord = coord[1:]
+
+        if (x_coord+y_coord) not in filled_spaces_white and (x_coord+y_coord) not in filled_spaces_black and x_coord in x.keys() and y_coord in y.keys():
           playerMove_white()
           empty_spaces_white -= 1
           filled_spaces_white.append(x_coord+y_coord)
@@ -164,8 +165,8 @@ def startGame():
       print(Fore.RESET, end="")
       if len(coord) != 0:
         x_coord = coord[0]
-        y_coord = coord[1]
-        if (x_coord+y_coord) not in filled_spaces_black and (x_coord+y_coord) not in filled_spaces_white:
+        y_coord = coord[1:]
+        if (x_coord+y_coord) not in filled_spaces_black and (x_coord+y_coord) not in filled_spaces_white and x_coord in x.keys() and y_coord in y.keys():
           playerMove_black()
           empty_spaces_black -= 1
           filled_spaces_black.append(x_coord+y_coord)
