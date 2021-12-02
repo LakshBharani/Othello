@@ -186,7 +186,7 @@ def startGame():
 def goToBoard():
     # terminal confirmation
     print('Loading...')
-    print(Fore.GREEN + "You have entered 2 Player Mode")
+    print(Fore.GREEN + "You have entered Single Player Mode")
     print(Fore.RESET, end="")
 
 #4 -----------------------------------------------------------------------------------------------------------

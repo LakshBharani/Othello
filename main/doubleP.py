@@ -1,4 +1,4 @@
-# Single player mode (Player vs Computer)
+# 2 player mode (Player vs Computer)
 
 import turtle
 from colorama import Fore, Back, Style
