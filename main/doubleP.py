@@ -139,8 +139,8 @@ def startGame():
       coord = input("Enter coordinates: " + Fore.YELLOW)
       print(Fore.RESET, end="")
       if len(coord) != 0:
-        x_coord = coord[0]
-        y_coord = coord[1:]
+        x_coord = coord[0].casefold()
+        y_coord = coord[1:].casefold()
 
         if (x_coord+y_coord) not in filled_spaces_white and (x_coord+y_coord) not in filled_spaces_black and x_coord in x.keys() and y_coord in y.keys():
           playerMove_white()
@@ -188,40 +188,43 @@ def goToBoard():
 #4 -----------------------------------------------------------------------------------------------------------
 def showRules():
   start = False
-  while start == False:
-    pen.up()
-    pen.hideturtle()
+  pen.up()
+  pen.hideturtle()
 
-    # TO DO: Fill in rules
-    pen.setpos(-120,180)
-    pen.write('''
+  # TO DO: Fill in rules
+  pen.setpos(-115,180)
+  pen.write('''
 RULES FOR OTHELLO
 
-   DOUBLE PLAYER
-      ''', font=(26))
-    pen.setpos(-265,-100)
-    pen.write('''
+    DOUBLE PLAYER
+''', font=(26))
+  pen.setpos(-265,-150)
+  pen.write('''
 # There are two colours of counters - black and white
 
 # It is an 8x8 board and they have coordinates on either axis to help place the counter.
 
 # Starting the game:
-    # The white counter always starts. 
-    # The four squares in the middle of the board start with four counters already placed (two of each colour).
-    # Each piece played must be laid adjacent to an opponent’s counter, such that there is a series of the
-      opponent’s counter bounded by two of the player’s counters.
-    # This can be done in three ways:
-        > Horizontal
-        > Vertical
-        > Diagonal
-    # When this is done, the series of the opponent’s counters flips to the colour of the current player’s counter.
+    1)  The white counter always starts. 
+    2)  The four squares in the middle of the board start with four counters already placed
+          (two of each colour).
+    3)  Each piece played must be laid adjacent to an opponent’s counter, such that there is a series
+          of the opponent’s counter bounded by two of the player’s counters.
+    4)  This can be done in three ways:
+          > Horizontal
+          > Vertical
+          > Diagonal
+    5)  When this is done, the series of the opponent’s counters flips to the colour of the current
+          player’s counter.
 
 # Ending the game:
-    # The game ends when a player is unable to flip a counter of the opponent.
-    # The player with the maximum number of counters at the end of the game wins!
-''')
+    1)  The game ends when a player is unable to flip a counter of the opponent.
+    2)  The player with the maximum number of counters at the end of the game wins!
+''', font=("", 9, ""))
+  while start == False:
     confirmStart = input("Enter (y) once you have read the rules: ")
     if confirmStart == "y":
+      turtle.resetscreen()
       goToBoard()
       start = True
 
