@@ -177,6 +177,7 @@ def startGame():
       # error message for empty input
       else:
         print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
+
 #3 -----------------------------------------------------------------------------------------------------------
 def goToBoard():
     # terminal confirmation
@@ -189,16 +190,40 @@ def showRules():
   start = False
   while start == False:
     pen.up()
-    pen.setpos(-165,100)
+    pen.hideturtle()
 
     # TO DO: Fill in rules
-    pen.write("")
-    pen.hideturtle()
+    pen.setpos(-120,180)
+    pen.write('''
+RULES FOR OTHELLO
+
+   DOUBLE PLAYER
+      ''', font=(26))
+    pen.setpos(-265,-100)
+    pen.write('''
+# There are two colours of counters - black and white
+
+# It is an 8x8 board and they have coordinates on either axis to help place the counter.
+
+# Starting the game:
+    # The white counter always starts. 
+    # The four squares in the middle of the board start with four counters already placed (two of each colour).
+    # Each piece played must be laid adjacent to an opponent’s counter, such that there is a series of the
+      opponent’s counter bounded by two of the player’s counters.
+    # This can be done in three ways:
+        > Horizontal
+        > Vertical
+        > Diagonal
+    # When this is done, the series of the opponent’s counters flips to the colour of the current player’s counter.
+
+# Ending the game:
+    # The game ends when a player is unable to flip a counter of the opponent.
+    # The player with the maximum number of counters at the end of the game wins!
+''')
     confirmStart = input("Enter (y) once you have read the rules: ")
     if confirmStart == "y":
       goToBoard()
       start = True
-
 
 #5 -----------------------------------------------------------------------------------------------------------
 def playerMove_white():
