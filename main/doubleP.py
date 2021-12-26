@@ -135,6 +135,7 @@ def startGame():
 
     # White player's turn
     if whiteTurn == True:
+      color = "white"
       print(Fore.YELLOW + "------- White -------" + Fore.RESET)
       coord = input("Enter coordinates: " + Fore.YELLOW)
       print(Fore.RESET, end="")
@@ -143,7 +144,7 @@ def startGame():
         y_coord = coord[1:].casefold()
 
         if (x_coord+y_coord) not in filled_spaces_white and (x_coord+y_coord) not in filled_spaces_black and x_coord in x.keys() and y_coord in y.keys():
-          playerMove_white()
+          placePiece(color = "white")
           empty_spaces_white -= 1
           filled_spaces_white.append(x_coord+y_coord)
           whiteTurn = False
@@ -165,7 +166,7 @@ def startGame():
         x_coord = coord[0]
         y_coord = coord[1:]
         if (x_coord+y_coord) not in filled_spaces_black and (x_coord+y_coord) not in filled_spaces_white and x_coord in x.keys() and y_coord in y.keys():
-          playerMove_black()
+          placePiece(color = "black")
           empty_spaces_black -= 1
           filled_spaces_black.append(x_coord+y_coord)
           whiteTurn = True
@@ -229,30 +230,18 @@ RULES FOR OTHELLO
       start = True
 
 #5 -----------------------------------------------------------------------------------------------------------
-def playerMove_white():
+def placePiece(color):
   def drawCircle():
     pen.down()
     pen.circle(radius=13)
 
   # drawing circle(white)
-  col = "white"
   pen.up()
   pen.setpos(x[x_coord], y[y_coord])
-  pen.fillcolor(col)
+  pen.fillcolor(color)
   pen.begin_fill()
   drawCircle()
   pen.end_fill()
 
-def playerMove_black():
-  def drawCircle():
-    pen.down()
-    pen.circle(radius=13)
-
-  # drawing circle(white)
-  col = "black"
-  pen.up()
-  pen.setpos(x[x_coord], y[y_coord])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
+#6 ------------------------------------------------------------------------------------------------------------
+# def flipPieces(color, x_coord, y_coord):
