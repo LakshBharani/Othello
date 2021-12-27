@@ -125,7 +125,9 @@ def startGame():
   empty_spaces_white = 30
   empty_spaces_black = 30
 
+  global filled_spaces_white
   filled_spaces_white = ["d4", "e5"]
+  global filled_spaces_black
   filled_spaces_black = ["d5", "e4"]
 
   while empty_spaces_white != 0 or empty_spaces_black != 0:
@@ -143,10 +145,12 @@ def startGame():
         x_coord = coord[0].casefold()
         y_coord = coord[1:].casefold()
 
+        # TO DO: ADD CONDITION TO CHECK IF LEGAL MOVE (isLegal = true?) --> Nishtha
         if (x_coord+y_coord) not in filled_spaces_white and (x_coord+y_coord) not in filled_spaces_black and x_coord in x.keys() and y_coord in y.keys():
-          placePiece(color = "white")
+          placePiece(color, x_coord, y_coord)
           empty_spaces_white -= 1
           filled_spaces_white.append(x_coord+y_coord)
+          flipPieces(color, x_coord, y_coord)
           whiteTurn = False
 
         # error message for placing piece on filled square  
@@ -159,16 +163,20 @@ def startGame():
 
       # Black player's turn
     else:
+      color = "black"
       print(Fore.BLUE + "------- Black -------" + Fore.RESET)
       coord = input("Enter coordinates: " + Fore.BLUE)
       print(Fore.RESET, end="")
       if len(coord) != 0:
         x_coord = coord[0]
         y_coord = coord[1:]
+
+        # TO DO: ADD CONDITION TO CHECK IF LEGAL MOVE (isLegal = true?) --> Nishtha
         if (x_coord+y_coord) not in filled_spaces_black and (x_coord+y_coord) not in filled_spaces_white and x_coord in x.keys() and y_coord in y.keys():
-          placePiece(color = "black")
+          placePiece(color, x_coord, y_coord)
           empty_spaces_black -= 1
           filled_spaces_black.append(x_coord+y_coord)
+          flipPieces(color, x_coord, y_coord)
           whiteTurn = True
 
         # error message for placing piece on filled square  
@@ -230,7 +238,7 @@ RULES FOR OTHELLO
       start = True
 
 #5 -----------------------------------------------------------------------------------------------------------
-def placePiece(color):
+def placePiece(color, x_coord, y_coord):
   def drawCircle():
     pen.down()
     pen.circle(radius=13)
@@ -244,4 +252,104 @@ def placePiece(color):
   pen.end_fill()
 
 #6 ------------------------------------------------------------------------------------------------------------
-# def flipPieces(color, x_coord, y_coord):
+def flipPieces(color, x_coord, y_coord):
+  ogY_coord = y_coord
+  ogX_coord = x_coord
+  coord = x_coord + y_coord
+  ogCoord = coord
+
+  if color == "white":
+    # Vertical flipping
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_black:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_black.remove(coord)
+      filled_spaces_white.append(coord)
+      y_coord = str(int(y_coord) + 1)
+      coord = x_coord + y_coord
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_black:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_black.remove(coord)
+      filled_spaces_white.append(coord)
+      y_coord = str(int(y_coord) - 1)
+      coord = x_coord + y_coord
+
+    # Horizontal flipping
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    x_coord = chr(ord(x_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_black:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_black.remove(coord)
+      filled_spaces_white.append(coord)
+      x_coord = chr(ord(x_coord) + 1)
+      coord = x_coord + y_coord
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    coord = ogCoord
+    x_coord = chr(ord(x_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_black:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_black.remove(coord)
+      filled_spaces_white.append(coord)
+      x_coord = chr(ord(x_coord) - 1)
+      coord = x_coord + y_coord
+
+  elif color == "black":
+    # Vertical flipping
+    y_coord = str(int(y_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      y_coord = str(int(y_coord) + 1)
+      coord = x_coord + y_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      y_coord = str(int(y_coord) - 1)
+      coord = x_coord + y_coord
+
+    # Horizontal flipping
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    x_coord = chr(ord(x_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      x_coord = chr(ord(x_coord) + 1)
+      coord = x_coord + y_coord
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    coord = ogCoord
+    x_coord = chr(ord(x_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      x_coord = chr(ord(x_coord) - 1)
+      coord = x_coord + y_coord
