@@ -20,3 +20,6 @@ Akshay, Laksh, Nishtha, Sharvari
 
 # How to play:
 https://www.youtube.com/watch?v=xDnYEOsjZnM
+
+# Project Proposal:
+https://docs.google.com/document/d/1FrO_3xfWTO8MhtDFyqpwTruskuzC3GfwSrlFv-tvYug/edit
