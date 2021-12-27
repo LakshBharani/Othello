@@ -308,6 +308,63 @@ def flipPieces(color, x_coord, y_coord):
       filled_spaces_white.append(coord)
       x_coord = chr(ord(x_coord) - 1)
       coord = x_coord + y_coord
+    
+    # Diagonal flipping
+      # Diagonal /
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) + 1)
+    x_coord = chr(ord(x_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_black:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_black.remove(coord)
+      filled_spaces_white.append(coord)
+      y_coord = str(int(y_coord) + 1)
+      x_coord = chr(ord(x_coord) + 1)
+      coord = x_coord + y_coord
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) - 1)
+    x_coord = chr(ord(x_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_black:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_black.remove(coord)
+      filled_spaces_white.append(coord)
+      y_coord = str(int(y_coord) - 1)
+      x_coord = chr(ord(x_coord) - 1)
+      coord = x_coord + y_coord
+    
+      # Diagonal \
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) + 1)
+    x_coord = chr(ord(x_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_black:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_black.remove(coord)
+      filled_spaces_white.append(coord)
+      y_coord = str(int(y_coord) + 1)
+      x_coord = chr(ord(x_coord) - 1)
+      coord = x_coord + y_coord
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) - 1)
+    x_coord = chr(ord(x_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_black:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_black.remove(coord)
+      filled_spaces_white.append(coord)
+      y_coord = str(int(y_coord) - 1)
+      x_coord = chr(ord(x_coord) + 1)
+      coord = x_coord + y_coord
 
   elif color == "black":
     # Vertical flipping
@@ -331,3 +388,83 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
 
     # Horizontal flipping
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    x_coord = chr(ord(x_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      x_coord = chr(ord(x_coord) + 1)
+      coord = x_coord + y_coord
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    coord = ogCoord
+    x_coord = chr(ord(x_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      x_coord = chr(ord(x_coord) - 1)
+      coord = x_coord + y_coord
+    
+    # Diagonal flipping
+      # Diagonal /
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) + 1)
+    x_coord = chr(ord(x_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      y_coord = str(int(y_coord) + 1)
+      x_coord = chr(ord(x_coord) + 1)
+      coord = x_coord + y_coord
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) - 1)
+    x_coord = chr(ord(x_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      y_coord = str(int(y_coord) - 1)
+      x_coord = chr(ord(x_coord) - 1)
+      coord = x_coord + y_coord
+    
+      # Diagonal \
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) + 1)
+    x_coord = chr(ord(x_coord) - 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      y_coord = str(int(y_coord) + 1)
+      x_coord = chr(ord(x_coord) - 1)
+      coord = x_coord + y_coord
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+    y_coord = str(int(y_coord) - 1)
+    x_coord = chr(ord(x_coord) + 1)
+    coord = x_coord + y_coord
+    while coord in filled_spaces_white:
+      placePiece(color, x_coord, y_coord)
+      filled_spaces_white.remove(coord)
+      filled_spaces_black.append(coord)
+      y_coord = str(int(y_coord) - 1)
+      x_coord = chr(ord(x_coord) + 1)
+      coord = x_coord + y_coord
