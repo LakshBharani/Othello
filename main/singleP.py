@@ -209,11 +209,11 @@ RULES FOR OTHELLO
 ''', font=(26))
   pen.setpos(-265,-150)
   pen.write('''
-⭐ There are two colours of counters - black and white
+# There are two colours of counters - black and white
 
-⭐ It is an 8x8 board and they have coordinates on either axis to help place the counter.
+# It is an 8x8 board and they have coordinates on either axis to help place the counter.
 
-⭐ Starting the game:
+# Starting the game:
     1)  The white counter always starts. The player gets the white counter and the computer gets
           the black counter.
     2)  The four squares in the middle of the board start with four counters already placed
@@ -227,7 +227,7 @@ RULES FOR OTHELLO
     5)  When this is done, the series of the opponent’s counters flips to the colour of the current
           player’s counter.
 
-⭐ Ending the game:
+# Ending the game:
     1)  The game ends when a player is unable to flip a counter of the opponent.
     2)  The player with the maximum number of counters at the end of the game wins!
 ''', font=("", 9, ""))
