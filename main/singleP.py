@@ -273,6 +273,7 @@ def flipPieces(color, x_coord, y_coord):
   # Vertical flipping
   resetCoord(x_coord, y_coord, coord)
 
+  # ⬆️
   global flipN
   def flipN(y_coord):
     y_coord = str(int(y_coord) + 1)
@@ -291,6 +292,7 @@ def flipPieces(color, x_coord, y_coord):
 
   resetCoord(x_coord, y_coord, coord)
   
+  # ⬇️
   global flipS
   def flipS(y_coord):
     y_coord = str(int(y_coord) - 1)
@@ -310,6 +312,7 @@ def flipPieces(color, x_coord, y_coord):
   # Horizontal flipping
   resetCoord(x_coord, y_coord, coord)
 
+  # ➡️
   global flipE
   def flipE(x_coord):
     x_coord = chr(ord(x_coord) + 1)
@@ -328,6 +331,7 @@ def flipPieces(color, x_coord, y_coord):
 
   resetCoord(x_coord, y_coord, coord)
   
+  # ⬅️
   global flipW
   def flipW(x_coord):
     x_coord = chr(ord(x_coord) - 1)
@@ -345,9 +349,10 @@ def flipPieces(color, x_coord, y_coord):
   flipW(x_coord)
 
   # Diagonal flipping
-    # Diagonal /
+  
   resetCoord(x_coord, y_coord, coord)
   
+  # ↗️
   global flipNE
   def flipNE(x_coord, y_coord):
     y_coord = str(int(y_coord) + 1)
@@ -368,6 +373,7 @@ def flipPieces(color, x_coord, y_coord):
 
   resetCoord(x_coord, y_coord, coord)
 
+  # ↙️
   global flipSW
   def flipSW(x_coord, y_coord):
     y_coord = str(int(y_coord) - 1)
@@ -386,9 +392,9 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   flipSW(x_coord, y_coord)
   
-    # Diagonal \
   resetCoord(x_coord, y_coord, coord)
   
+  # ↖️
   global flipNW
   def flipNW(x_coord, y_coord):
     y_coord = str(int(y_coord) + 1)
@@ -409,6 +415,7 @@ def flipPieces(color, x_coord, y_coord):
 
   resetCoord(x_coord, y_coord, coord)
   
+  # ↘️
   global flipSE
   def flipSE(x_coord, y_coord):
     y_coord = str(int(y_coord) - 1)
