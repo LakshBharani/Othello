@@ -30,3 +30,4 @@ Number of players (1/2): '''))
     else:
         print("ERROR: Enter the number 1 (For playing against computer) or number 2 (For playing against a friend")
 main()
+print()
