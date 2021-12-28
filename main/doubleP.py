@@ -186,6 +186,8 @@ def startGame():
       # error message for empty input
       else:
         print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
+  else:
+    scoreBoard()  
 
 #3 -----------------------------------------------------------------------------------------------------------
 def goToBoard():
@@ -432,3 +434,51 @@ def flipPieces(color, x_coord, y_coord):
       x_coord = chr(ord(x_coord) + 1)
       coord = x_coord + y_coord
   flipSE(x_coord, y_coord)
+
+#7 ------------------------------------------------------------------------------------------------------------
+# TO DO: Make Scores change --> Sharvari
+def scoreBoard():
+  # win counter
+  winsWhite = 0
+  winsBlack = 0
+  # drawing board
+  turtle.clearscreen()
+  turtle.hideturtle()
+  turtle.pensize(3)
+  turtle.penup()
+  turtle.goto(-100,207)
+  turtle.write("SCOREBOARD", font = ("", 20, ""))
+  turtle.goto(-250, 150)
+  turtle.showturtle()
+  turtle.pendown()
+  for i in range (2):
+    turtle.forward(500)
+    turtle.right(90)
+    turtle.forward(200)
+    turtle.right(90)
+  turtle.setpos(-250,110)
+  turtle.forward(500)
+  turtle.penup()
+  turtle.goto(0, 150)
+  turtle.right(90)
+  turtle.pendown()
+  turtle.forward(200)
+  turtle.hideturtle()
+  turtle.speed(100)
+  turtle.penup()
+  turtle.goto(-150, 120)
+  turtle.write("White", font = ("", 15, ""))
+  turtle.goto(105, 120)
+  turtle.write("Black", font = ("", 15, ""))
+  turtle.goto(-150, 0)
+  turtle.write(winsWhite, font = ("", 50, ""))
+  turtle.goto(110, 0)
+  turtle.write(winsBlack, font = ("", 50, ""))
+
+  # Replay game
+  restart = input("Play Again (y/n): ")
+  turtle.clearscreen()
+  if restart == "y":
+    drawBoard()
+  else:
+    print("Thanks")
