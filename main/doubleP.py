@@ -123,8 +123,8 @@ def drawBoard():
 
 #2 -----------------------------------------------------------------------------------------------------------
 def startGame():
-  empty_spaces_white = 0
-  empty_spaces_black = 0
+  empty_spaces_white = 30
+  empty_spaces_black = 30
 
   global filled_spaces_white
   filled_spaces_white = ["d4", "e5"]
