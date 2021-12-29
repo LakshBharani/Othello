@@ -2,6 +2,7 @@
 
 import turtle
 from colorama import Fore
+import time
 
 global whiteTurn
 whiteTurn = True
@@ -481,4 +482,13 @@ def scoreBoard():
   if restart == "y":
     drawBoard()
   else:
-    print("Thanks")
+    turtle.clearscreen()
+    turtle.hideturtle()
+    turtle.penup()
+    turtle.setpos(-180,0)
+    turtle.write("Thank you for playing", font = ("", 30, ""))
+    for i in range (5, 0, -1):
+      print(Fore.RED + "Closing in", str(i) + "..." + Fore.GREEN)
+      time.sleep(1)
+    print("Goodbye" + Fore.RESET)
+    exit()
