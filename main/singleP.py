@@ -441,7 +441,9 @@ def flipPieces(color, x_coord, y_coord):
 # TO DO: Make Scores change --> Sharvari
 def scoreBoard():
   # win counter
+  global winsWhite
   winsWhite = 0
+  global winsBlack
   winsBlack = 0
   # drawing board
   turtle.clearscreen()
