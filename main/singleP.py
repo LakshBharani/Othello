@@ -77,42 +77,13 @@ def drawBoard():
     pen.write(chr(i+64))
     xtemp+=40
 
-  def drawCircle():
-    pen.down()
-    pen.circle(radius=13)
-
   # drawing init circle(white)
-  col = "white"
-  pen.up()
-  pen.setpos(x["e"],y["5"])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
-
-  pen.up()
-  pen.setpos(x["d"],y["4"])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
+  placePiece(color="white", x_coord="e", y_coord="5")
+  placePiece(color="white", x_coord="d", y_coord="4")
 
   # drawing init circle(black)
-  col = "black"
-  pen.up()
-  pen.setpos(x["d"],y["5"])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
-
-  pen.up()
-  pen.setpos(x["e"],y["4"])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
-  pen.hideturtle()
+  placePiece(color="black", x_coord="d", y_coord="5")
+  placePiece(color="black", x_coord="e", y_coord="4")
 
   # Placing more pieces
   startGame()

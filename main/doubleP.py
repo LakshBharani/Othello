@@ -77,42 +77,13 @@ def drawBoard():
     pen.write(chr(i+64))
     xtemp+=40
 
-  def drawCircle():
-    pen.down()
-    pen.circle(radius=13)
-
   # drawing init circle(white)
-  col = "white"
-  pen.up()
-  pen.setpos(x["e"],y["5"])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
-
-  pen.up()
-  pen.setpos(x["d"],y["4"])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
+  placePiece(color="white", x_coord="e", y_coord="5")
+  placePiece(color="white", x_coord="d", y_coord="4")
 
   # drawing init circle(black)
-  col = "black"
-  pen.up()
-  pen.setpos(x["d"],y["5"])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
-
-  pen.up()
-  pen.setpos(x["e"],y["4"])
-  pen.fillcolor(col)
-  pen.begin_fill()
-  drawCircle()
-  pen.end_fill()
-  pen.hideturtle()
+  placePiece(color="black", x_coord="d", y_coord="5")
+  placePiece(color="black", x_coord="e", y_coord="4")
 
   # Placing more pieces
   startGame()
@@ -126,6 +97,7 @@ def startGame():
   empty_spaces_white = 30
   empty_spaces_black = 30
 
+  # initial 4 pieces
   global filled_spaces_white
   filled_spaces_white = ["d4", "e5"]
   global filled_spaces_black
@@ -247,6 +219,7 @@ def placePiece(color, x_coord, y_coord):
     pen.circle(radius=13)
 
   # drawing circle(white)
+  pen.hideturtle()
   pen.up()
   pen.setpos(x[x_coord], y[y_coord])
   pen.fillcolor(color)
