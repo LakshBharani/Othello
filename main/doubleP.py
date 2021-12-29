@@ -123,8 +123,8 @@ def drawBoard():
 
 #2 -----------------------------------------------------------------------------------------------------------
 def startGame():
-  empty_spaces_white = 30
-  empty_spaces_black = 30
+  empty_spaces_white = 0
+  empty_spaces_black = 0
 
   global filled_spaces_white
   filled_spaces_white = ["d4", "e5"]
@@ -485,8 +485,7 @@ def scoreBoard():
     turtle.clearscreen()
     turtle.hideturtle()
     turtle.penup()
-    turtle.setpos(-180,0)
-    turtle.write("Thank you for playing", font = ("", 30, ""))
+    turtle.write("Thank you for playing", font = ("", 30, ""), align = 'center')
     for i in range (5, 0, -1):
       print(Fore.RED + "Closing in", str(i) + "..." + Fore.GREEN)
       time.sleep(1)

@@ -486,8 +486,7 @@ def scoreBoard():
     turtle.clearscreen()
     turtle.hideturtle()
     turtle.penup()
-    turtle.setpos(-180,0)
-    turtle.write("Thank you for playing", font = ("", 30, ""))
+    turtle.write("Thank you for playing", font = ("", 30, ""), align = 'center')
     for i in range (5, 0, -1):
       print(Fore.RED + "Closing in", str(i) + "..." + Fore.GREEN)
       time.sleep(1)
