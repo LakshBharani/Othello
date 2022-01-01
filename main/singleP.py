@@ -149,8 +149,8 @@ def startGame():
       coord = input("Enter coordinates: " + Fore.BLUE)
       print(Fore.RESET, end="")
       if len(coord) != 0:
-        x_coord = coord[0]
-        y_coord = coord[1:]
+        x_coord = coord[0].casefold()
+        y_coord = coord[1:].casefold()
 
         # TO DO: ADD CONDITION TO CHECK IF LEGAL MOVE (isLegal = true?) --> Nishtha
         if (x_coord+y_coord) not in filled_spaces_black and (x_coord+y_coord) not in filled_spaces_white and x_coord in x.keys() and y_coord in y.keys():
@@ -245,13 +245,6 @@ def placePiece(color, x_coord, y_coord):
 def flipPieces(color, x_coord, y_coord):
   ogY_coord = y_coord
   ogX_coord = x_coord
-  coord = x_coord + y_coord
-  ogCoord = coord
-
-  def resetCoord(x_coord, y_coord, coord):
-    x_coord = ogX_coord
-    y_coord = ogY_coord
-    coord = ogCoord
 
   if whiteTurn:
     toBeChecked = filled_spaces_black
@@ -259,12 +252,11 @@ def flipPieces(color, x_coord, y_coord):
     toBeChecked = filled_spaces_white
 
   # Vertical flipping
-  resetCoord(x_coord, y_coord, coord)
 
   # ⬆️
   global flipN
   def flipN(y_coord):
-    y_coord = str(int(y_coord) + 1)
+    y_coord = str(int(ogY_coord) + 1)
     coord = x_coord + y_coord
     while coord in toBeChecked:
       placePiece(color, x_coord, y_coord)
@@ -278,13 +270,11 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   if inN == True:
     flipN(y_coord)
-
-  resetCoord(x_coord, y_coord, coord)
   
   # ⬇️
   global flipS
   def flipS(y_coord):
-    y_coord = str(int(y_coord) - 1)
+    y_coord = str(int(ogY_coord) - 1)
     coord = x_coord + y_coord
     while coord in toBeChecked:
       placePiece(color, x_coord, y_coord)
@@ -300,12 +290,10 @@ def flipPieces(color, x_coord, y_coord):
     flipS(y_coord)
   
   # Horizontal flipping
-  resetCoord(x_coord, y_coord, coord)
-
   # ➡️
   global flipE
   def flipE(x_coord):
-    x_coord = chr(ord(x_coord) + 1)
+    x_coord = chr(ord(ogX_coord) + 1)
     coord = x_coord + y_coord
     while coord in toBeChecked:
       placePiece(color, x_coord, y_coord)
@@ -319,13 +307,11 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   if inE == True:
     flipE(x_coord)
-
-  resetCoord(x_coord, y_coord, coord)
   
   # ⬅️
   global flipW
   def flipW(x_coord):
-    x_coord = chr(ord(x_coord) - 1)
+    x_coord = chr(ord(ogX_coord) - 1)
     coord = x_coord + y_coord
     while coord in toBeChecked:
       placePiece(color, x_coord, y_coord)
@@ -339,14 +325,13 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   if inW == True:
     flipW(x_coord)
-  resetCoord(x_coord, y_coord, coord)
 
   # Diagonal flipping  
   # ↗️
   global flipNE
   def flipNE(x_coord, y_coord):
-    y_coord = str(int(y_coord) + 1)
-    x_coord = chr(ord(x_coord) + 1)
+    y_coord = str(int(ogY_coord) + 1)
+    x_coord = chr(ord(ogX_coord) + 1)
     coord = x_coord + y_coord
     while coord in toBeChecked:
       placePiece(color, x_coord, y_coord)
@@ -361,13 +346,12 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   if inNE == True:
     flipNE(x_coord, y_coord)
-  resetCoord(x_coord, y_coord, coord)
 
   # ↙️
   global flipSW
   def flipSW(x_coord, y_coord):
-    y_coord = str(int(y_coord) - 1)
-    x_coord = chr(ord(x_coord) - 1)
+    y_coord = str(int(ogY_coord) - 1)
+    x_coord = chr(ord(ogX_coord) - 1)
     coord = x_coord + y_coord
     while coord in toBeChecked:
       placePiece(color, x_coord, y_coord)
@@ -382,13 +366,12 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   if inSW == True:
     flipSW(x_coord, y_coord)
-  resetCoord(x_coord, y_coord, coord)
   
   # ↖️
   global flipNW
   def flipNW(x_coord, y_coord):
-    y_coord = str(int(y_coord) + 1)
-    x_coord = chr(ord(x_coord) - 1)
+    y_coord = str(int(ogY_coord) + 1)
+    x_coord = chr(ord(ogX_coord) - 1)
     coord = x_coord + y_coord
     while coord in toBeChecked:
       placePiece(color, x_coord, y_coord)
@@ -403,13 +386,12 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   if inNW == True:
     flipNW(x_coord, y_coord)
-  resetCoord(x_coord, y_coord, coord)
   
   # ↘️
   global flipSE
   def flipSE(x_coord, y_coord):
-    y_coord = str(int(y_coord) - 1)
-    x_coord = chr(ord(x_coord) + 1)
+    y_coord = str(int(ogY_coord) - 1)
+    x_coord = chr(ord(ogX_coord) + 1)
     coord = x_coord + y_coord
     while coord in toBeChecked:
       placePiece(color, x_coord, y_coord)
@@ -424,7 +406,6 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   if inSE == True:
     flipSE(x_coord, y_coord)
-  resetCoord(x_coord, y_coord, coord)
 
 #7 ------------------------------------------------------------------------------------------------------------
 # Keeps track of white and black pieces on the board currently
