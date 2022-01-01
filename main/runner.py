@@ -7,9 +7,9 @@ from colorama import Fore
 #1 -----------------------------------------------------------------------------------------------------------
 def main():
     # input with colored text
-    choice = int(input(Fore.LIGHTMAGENTA_EX + ''' 
-            Welcome to Othello''' + Fore.RED + '''
-            ******************''' + Fore.LIGHTCYAN_EX +
+    choice = int(input(Fore.LIGHTCYAN_EX + ''' 
+            Welcome to Othello''' + Fore.LIGHTRED_EX + '''
+            ******************''' + Fore.LIGHTGREEN_EX +
 '''
             ==================
             |    1 Player    |

@@ -339,11 +339,9 @@ def flipPieces(color, x_coord, y_coord):
       coord = x_coord + y_coord
   if inW == True:
     flipW(x_coord)
-
-  # Diagonal flipping
-  
   resetCoord(x_coord, y_coord, coord)
-  
+
+  # Diagonal flipping  
   # ↗️
   global flipNE
   def flipNE(x_coord, y_coord):
@@ -361,8 +359,8 @@ def flipPieces(color, x_coord, y_coord):
       y_coord = str(int(y_coord) + 1)
       x_coord = chr(ord(x_coord) + 1)
       coord = x_coord + y_coord
-  # flipNE(x_coord, y_coord)
-
+  if inNE == True:
+    flipNE(x_coord, y_coord)
   resetCoord(x_coord, y_coord, coord)
 
   # ↙️
@@ -382,8 +380,8 @@ def flipPieces(color, x_coord, y_coord):
       y_coord = str(int(y_coord) - 1)
       x_coord = chr(ord(x_coord) - 1)
       coord = x_coord + y_coord
-  # flipSW(x_coord, y_coord)
-  
+  if inSW == True:
+    flipSW(x_coord, y_coord)
   resetCoord(x_coord, y_coord, coord)
   
   # ↖️
@@ -403,8 +401,8 @@ def flipPieces(color, x_coord, y_coord):
       y_coord = str(int(y_coord) + 1)
       x_coord = chr(ord(x_coord) - 1)
       coord = x_coord + y_coord
-  # flipNW(x_coord, y_coord)
-
+  if inNW == True:
+    flipNW(x_coord, y_coord)
   resetCoord(x_coord, y_coord, coord)
   
   # ↘️
@@ -424,7 +422,9 @@ def flipPieces(color, x_coord, y_coord):
       y_coord = str(int(y_coord) - 1)
       x_coord = chr(ord(x_coord) + 1)
       coord = x_coord + y_coord
-  # flipSE(x_coord, y_coord)
+  if inSE == True:
+    flipSE(x_coord, y_coord)
+  resetCoord(x_coord, y_coord, coord)
 
 #7 ------------------------------------------------------------------------------------------------------------
 # Keeps track of white and black pieces on the board currently
@@ -545,15 +545,9 @@ def checkDirection(color, x_coord, y_coord):
   inSW = False
   inNW = False
 
+  # initial coords
   ogY_coord = y_coord
   ogX_coord = x_coord
-  coord = x_coord + y_coord
-  ogCoord = coord
-
-  def resetCoord(x_coord, y_coord, coord):
-    x_coord = ogX_coord
-    y_coord = ogY_coord
-    coord = ogCoord
 
   if color == "white":
     toBeChecked = filled_spaces_black
@@ -563,9 +557,9 @@ def checkDirection(color, x_coord, y_coord):
     endPiece = filled_spaces_black
 
   # checking in N
-  y_coord = str(int(y_coord)+1)
-  while (ogX_coord + str(int(ogY_coord)+1)) in toBeChecked and y_coord in y:
-    y_coord = str(int(y_coord)+1)
+  y_coord = str(int(ogY_coord) + 1)
+  while (ogX_coord + str(int(ogY_coord) + 1)) in toBeChecked and y_coord in y:
+    y_coord = str(int(y_coord) + 1)
     coord = x_coord+y_coord
     if coord in endPiece:
       inN = True
@@ -573,11 +567,10 @@ def checkDirection(color, x_coord, y_coord):
       break
     else:
       continue
-  resetCoord(x_coord, y_coord, coord)
 
   # checking in S
-  y_coord = str(int(y_coord)-1)
-  while (ogX_coord + str(int(ogY_coord)-1)) in toBeChecked and y_coord in y:
+  y_coord = str(int(ogY_coord) - 1)
+  while (ogX_coord + str(int(ogY_coord) - 1)) in toBeChecked and y_coord in y:
     y_coord = str(int(y_coord)-1)
     coord = x_coord+y_coord
     if coord in endPiece:
@@ -586,10 +579,9 @@ def checkDirection(color, x_coord, y_coord):
       break
     else:
       continue
-  resetCoord(x_coord, y_coord, coord)
 
   # checking in E
-  x_coord = chr(ord(x_coord) + 1)
+  x_coord = chr(ord(ogX_coord) + 1)
   while (chr(ord(ogX_coord) + 1) + ogY_coord) in toBeChecked and x_coord in x:
     x_coord = chr(ord(x_coord) + 1)
     coord = x_coord + ogY_coord
@@ -599,10 +591,9 @@ def checkDirection(color, x_coord, y_coord):
       break
     else:
       continue
-  resetCoord(x_coord, y_coord, coord)
 
   # checking in W
-  x_coord = chr(ord(x_coord) - 1)
+  x_coord = chr(ord(ogX_coord) - 1)
   while (chr(ord(ogX_coord) - 1) + ogY_coord) in toBeChecked and x_coord in x:
     x_coord = chr(ord(x_coord) - 1)
     coord = x_coord + ogY_coord
@@ -612,4 +603,59 @@ def checkDirection(color, x_coord, y_coord):
       break
     else:
       continue
-  resetCoord(x_coord, y_coord, coord)
+
+  # checking in NE
+  x_coord = chr(ord(ogX_coord) + 1)
+  y_coord = str(int(ogY_coord) + 1)
+  while (chr(ord(ogX_coord) + 1) + str(int(ogY_coord) + 1)) in toBeChecked and y_coord in y and x_coord in x:
+    x_coord = chr(ord(x_coord) + 1)
+    y_coord = str(int(y_coord) + 1)
+    coord = x_coord+y_coord
+    if coord in endPiece:
+      inNE = True
+      isReadyToPlace = True
+      break
+    else:
+      continue
+
+  # checking in SE
+  x_coord = chr(ord(ogX_coord) + 1)
+  y_coord = str(int(ogY_coord) - 1)
+  while (chr(ord(ogX_coord) + 1) + str(int(ogY_coord) - 1)) in toBeChecked and y_coord in y and x_coord in x:
+    x_coord = chr(ord(x_coord) + 1)
+    y_coord = str(int(y_coord) - 1)
+    coord = x_coord + y_coord
+    if coord in endPiece:
+      inSE = True
+      isReadyToPlace = True
+      break
+    else:
+      continue
+
+  # checking in NW
+  x_coord = chr(ord(ogX_coord) - 1)
+  y_coord = str(int(ogY_coord) + 1)
+  while (chr(ord(ogX_coord) - 1) + str(int(ogY_coord) + 1)) in toBeChecked and y_coord in y and x_coord in x:
+    x_coord = chr(ord(x_coord) - 1)
+    y_coord = str(int(y_coord) + 1)
+    coord = x_coord+y_coord
+    if coord in endPiece:
+      inNW = True
+      isReadyToPlace = True
+      break
+    else:
+      continue
+
+  # checking in SW
+  x_coord = chr(ord(ogX_coord) - 1)
+  y_coord = str(int(ogY_coord) - 1)
+  while (chr(ord(ogX_coord) - 1) + str(int(ogY_coord) - 1)) in toBeChecked and y_coord in y and x_coord in x:
+    x_coord = chr(ord(x_coord) - 1)
+    y_coord = str(int(y_coord) - 1)
+    coord = x_coord+y_coord
+    if coord in endPiece:
+      inSW = True
+      isReadyToPlace = True
+      break
+    else:
+      continue
