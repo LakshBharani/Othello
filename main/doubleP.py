@@ -1,4 +1,4 @@
-# 2 player mode (Player vs Computer)
+# 2 player mode (Player vs Player)
 
 import turtle
 from colorama import Fore
@@ -85,6 +85,15 @@ def drawBoard():
   placePiece(color="black", x_coord="d", y_coord="5")
   placePiece(color="black", x_coord="e", y_coord="4")
 
+  # initial 4 pieces
+  global filled_spaces_white
+  filled_spaces_white = ["d4", "e5"]
+  global filled_spaces_black
+  filled_spaces_black = ["d5", "e4"]
+
+  # drawing live score table
+  liveScore(drawTable=True)
+
   # Placing more pieces
   startGame()
 
@@ -96,12 +105,6 @@ def drawBoard():
 def startGame():
   empty_spaces_white = 30
   empty_spaces_black = 30
-
-  # initial 4 pieces
-  global filled_spaces_white
-  filled_spaces_white = ["d4", "e5"]
-  global filled_spaces_black
-  filled_spaces_black = ["d5", "e4"]
 
   while empty_spaces_white != 0 or empty_spaces_black != 0:
     global x_coord
@@ -120,11 +123,16 @@ def startGame():
 
         # TO DO: ADD CONDITION TO CHECK IF LEGAL MOVE (isLegal = true?) --> Nishtha
         if (x_coord+y_coord) not in filled_spaces_white and (x_coord+y_coord) not in filled_spaces_black and x_coord in x.keys() and y_coord in y.keys():
-          placePiece(color, x_coord, y_coord)
-          empty_spaces_white -= 1
-          filled_spaces_white.append(x_coord+y_coord)
-          flipPieces(color, x_coord, y_coord)
-          whiteTurn = False
+          checkDirection(color, x_coord, y_coord)
+          if isReadyToPlace == True:
+            placePiece(color, x_coord, y_coord)
+            empty_spaces_white -= 1
+            filled_spaces_white.append(x_coord+y_coord)
+            flipPieces(color, x_coord, y_coord)
+            liveScore(drawTable=False)
+            whiteTurn = False
+          else:
+            print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
 
         # error message for placing piece on filled square  
         else:
@@ -146,11 +154,16 @@ def startGame():
 
         # TO DO: ADD CONDITION TO CHECK IF LEGAL MOVE (isLegal = true?) --> Nishtha
         if (x_coord+y_coord) not in filled_spaces_black and (x_coord+y_coord) not in filled_spaces_white and x_coord in x.keys() and y_coord in y.keys():
-          placePiece(color, x_coord, y_coord)
-          empty_spaces_black -= 1
-          filled_spaces_black.append(x_coord+y_coord)
-          flipPieces(color, x_coord, y_coord)
-          whiteTurn = True
+          checkDirection(color, x_coord, y_coord)
+          if isReadyToPlace == True:
+            placePiece(color, x_coord, y_coord)
+            empty_spaces_black -= 1
+            filled_spaces_black.append(x_coord+y_coord)
+            flipPieces(color, x_coord, y_coord)
+            liveScore(drawTable=False)
+            whiteTurn = True
+          else:
+            print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
 
         # error message for placing piece on filled square  
         else:
@@ -263,7 +276,8 @@ def flipPieces(color, x_coord, y_coord):
         filled_spaces_black.append(coord)
       y_coord = str(int(y_coord) + 1)
       coord = x_coord + y_coord
-  flipN(y_coord)
+  if inN == True:
+    flipN(y_coord)
 
   resetCoord(x_coord, y_coord, coord)
   
@@ -282,7 +296,8 @@ def flipPieces(color, x_coord, y_coord):
         filled_spaces_black.append(coord)
       y_coord = str(int(y_coord) - 1)
       coord = x_coord + y_coord
-  flipS(y_coord)
+  if inS == True:
+    flipS(y_coord)
   
   # Horizontal flipping
   resetCoord(x_coord, y_coord, coord)
@@ -302,7 +317,8 @@ def flipPieces(color, x_coord, y_coord):
         filled_spaces_black.append(coord)
       x_coord = chr(ord(x_coord) + 1)
       coord = x_coord + y_coord
-  flipE(x_coord)
+  if inE == True:
+    flipE(x_coord)
 
   resetCoord(x_coord, y_coord, coord)
   
@@ -321,7 +337,8 @@ def flipPieces(color, x_coord, y_coord):
         filled_spaces_black.append(coord)
       x_coord = chr(ord(x_coord) - 1)
       coord = x_coord + y_coord
-  flipW(x_coord)
+  if inW == True:
+    flipW(x_coord)
 
   # Diagonal flipping
   
@@ -344,7 +361,7 @@ def flipPieces(color, x_coord, y_coord):
       y_coord = str(int(y_coord) + 1)
       x_coord = chr(ord(x_coord) + 1)
       coord = x_coord + y_coord
-  flipNE(x_coord, y_coord)
+  # flipNE(x_coord, y_coord)
 
   resetCoord(x_coord, y_coord, coord)
 
@@ -365,7 +382,7 @@ def flipPieces(color, x_coord, y_coord):
       y_coord = str(int(y_coord) - 1)
       x_coord = chr(ord(x_coord) - 1)
       coord = x_coord + y_coord
-  flipSW(x_coord, y_coord)
+  # flipSW(x_coord, y_coord)
   
   resetCoord(x_coord, y_coord, coord)
   
@@ -386,7 +403,7 @@ def flipPieces(color, x_coord, y_coord):
       y_coord = str(int(y_coord) + 1)
       x_coord = chr(ord(x_coord) - 1)
       coord = x_coord + y_coord
-  flipNW(x_coord, y_coord)
+  # flipNW(x_coord, y_coord)
 
   resetCoord(x_coord, y_coord, coord)
   
@@ -407,10 +424,58 @@ def flipPieces(color, x_coord, y_coord):
       y_coord = str(int(y_coord) - 1)
       x_coord = chr(ord(x_coord) + 1)
       coord = x_coord + y_coord
-  flipSE(x_coord, y_coord)
+  # flipSE(x_coord, y_coord)
 
 #7 ------------------------------------------------------------------------------------------------------------
+# Keeps track of white and black pieces on the board currently
+def liveScore(drawTable):
+  # draws table only once alnong with the board
+  if drawTable == True:
+    turtle.penup()
+    turtle.goto(-150, -175)
+    turtle.pendown()
+    for i in range (2):
+      turtle.forward(300)
+      turtle.right(90)
+      turtle.forward(100)
+      turtle.right(90)
+    turtle.penup()
+    turtle.goto(-150,-200)
+    turtle.pendown()
+    turtle.forward(300)
+    turtle.penup()
+    turtle.goto(0, -175)
+    turtle.right(90)
+    turtle.pendown()
+    turtle.forward(100)
+    turtle.penup()
+    turtle.hideturtle() 
+    turtle.goto(-75 ,-197)
+    turtle.write("White", font=("", 12, ""), align="center")
+    turtle.goto(75 ,-197)
+    turtle.write("Black", font=("", 12, ""), align="center")
+  def mask():
+    for i in range(2):
+      turtle.fillcolor("lightblue")
+      turtle.begin_fill()
+      turtle.forward(72)
+      turtle.right(90)
+      turtle.forward(147)
+      turtle.right(90)
+      turtle.end_fill()
+  turtle.setpos(-1, -202)
+  mask()
+  turtle.setpos(-75, -265)
+  turtle.write(len(filled_spaces_white), font=("", 36, ""), align="center")
+
+  turtle.setpos(149, -202)
+  mask()
+  turtle.setpos(75, -265)
+  turtle.write(len(filled_spaces_black), font=("", 36, ""), align="center")
+
+#8 ------------------------------------------------------------------------------------------------------------
 # TO DO: Make Scores change --> Sharvari
+# Keeps track of rounds won by each player
 def scoreBoard():
   # win counter
   winsWhite = 0
@@ -464,3 +529,87 @@ def scoreBoard():
       time.sleep(1)
     print("Goodbye" + Fore.RESET)
     exit()
+
+#8 ------------------------------------------------------------------------------------------------------------
+def checkDirection(color, x_coord, y_coord):
+  global isReadyToPlace
+  isReadyToPlace = False
+  
+  global inN, inS, inE, inW,inNE, inNW, inSE, inSW
+  inN = False
+  inS = False
+  inE = False
+  inW = False
+  inNE = False
+  inSE = False
+  inSW = False
+  inNW = False
+
+  ogY_coord = y_coord
+  ogX_coord = x_coord
+  coord = x_coord + y_coord
+  ogCoord = coord
+
+  def resetCoord(x_coord, y_coord, coord):
+    x_coord = ogX_coord
+    y_coord = ogY_coord
+    coord = ogCoord
+
+  if color == "white":
+    toBeChecked = filled_spaces_black
+    endPiece = filled_spaces_white
+  elif color == "black":
+    toBeChecked = filled_spaces_white
+    endPiece = filled_spaces_black
+
+  # checking in N
+  y_coord = str(int(y_coord)+1)
+  while (ogX_coord + str(int(ogY_coord)+1)) in toBeChecked and y_coord in y:
+    y_coord = str(int(y_coord)+1)
+    coord = x_coord+y_coord
+    if coord in endPiece:
+      inN = True
+      isReadyToPlace = True
+      break
+    else:
+      continue
+  resetCoord(x_coord, y_coord, coord)
+
+  # checking in S
+  y_coord = str(int(y_coord)-1)
+  while (ogX_coord + str(int(ogY_coord)-1)) in toBeChecked and y_coord in y:
+    y_coord = str(int(y_coord)-1)
+    coord = x_coord+y_coord
+    if coord in endPiece:
+      inS = True
+      isReadyToPlace = True
+      break
+    else:
+      continue
+  resetCoord(x_coord, y_coord, coord)
+
+  # checking in E
+  x_coord = chr(ord(x_coord) + 1)
+  while (chr(ord(ogX_coord) + 1) + ogY_coord) in toBeChecked and x_coord in x:
+    x_coord = chr(ord(x_coord) + 1)
+    coord = x_coord + ogY_coord
+    if coord in endPiece:
+      inE = True
+      isReadyToPlace = True
+      break
+    else:
+      continue
+  resetCoord(x_coord, y_coord, coord)
+
+  # checking in W
+  x_coord = chr(ord(x_coord) - 1)
+  while (chr(ord(ogX_coord) - 1) + ogY_coord) in toBeChecked and x_coord in x:
+    x_coord = chr(ord(x_coord) - 1)
+    coord = x_coord + ogY_coord
+    if coord in endPiece:
+      inW = True
+      isReadyToPlace = True
+      break
+    else:
+      continue
+  resetCoord(x_coord, y_coord, coord)

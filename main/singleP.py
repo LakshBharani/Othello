@@ -1,4 +1,4 @@
-# 2 player mode (Player vs Computer)
+# 1 player mode (Player vs Computer)
 
 import turtle
 from colorama import Fore
@@ -85,6 +85,15 @@ def drawBoard():
   placePiece(color="black", x_coord="d", y_coord="5")
   placePiece(color="black", x_coord="e", y_coord="4")
 
+  # initial 4 pieces
+  global filled_spaces_white
+  filled_spaces_white = ["d4", "e5"]
+  global filled_spaces_black
+  filled_spaces_black = ["d5", "e4"]
+
+  # drawing live score table
+  liveScore(drawTable=True)
+
   # Placing more pieces
   startGame()
 
@@ -96,11 +105,6 @@ def drawBoard():
 def startGame():
   empty_spaces_white = 30
   empty_spaces_black = 30
-
-  global filled_spaces_white
-  filled_spaces_white = ["d4", "e5"]
-  global filled_spaces_black
-  filled_spaces_black = ["d5", "e4"]
 
   while empty_spaces_white != 0 or empty_spaces_black != 0:
     global x_coord
@@ -123,6 +127,7 @@ def startGame():
           empty_spaces_white -= 1
           filled_spaces_white.append(x_coord+y_coord)
           flipPieces(color, x_coord, y_coord)
+          liveScore(drawTable=False)
           whiteTurn = False
 
         # error message for placing piece on filled square  
@@ -149,6 +154,7 @@ def startGame():
           empty_spaces_black -= 1
           filled_spaces_black.append(x_coord+y_coord)
           flipPieces(color, x_coord, y_coord)
+          liveScore(drawTable=False)
           whiteTurn = True
 
         # error message for placing piece on filled square  
@@ -159,7 +165,7 @@ def startGame():
       else:
         print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
   else:
-    scoreBoard()
+    scoreBoard()  
 
 #3 -----------------------------------------------------------------------------------------------------------
 def goToBoard():
@@ -179,7 +185,7 @@ def showRules():
   pen.write('''
 RULES FOR OTHELLO
 
-    DOUBLE PLAYER
+    SINGLE PLAYER
 ''', font=(26))
   pen.setpos(-265,-150)
   pen.write('''
@@ -188,8 +194,7 @@ RULES FOR OTHELLO
 # It is an 8x8 board and they have coordinates on either axis to help place the counter.
 
 # Starting the game:
-    1)  The white counter always starts. The player gets the white counter and the computer gets
-          the black counter.
+    1)  The white counter always starts. 
     2)  The four squares in the middle of the board start with four counters already placed
           (two of each colour).
     3)  Each piece played must be laid adjacent to an opponent’s counter, such that there is a series
@@ -219,6 +224,7 @@ def placePiece(color, x_coord, y_coord):
     pen.circle(radius=13)
 
   # drawing circle(white)
+  pen.hideturtle()
   pen.up()
   pen.setpos(x[x_coord], y[y_coord])
   pen.fillcolor(color)
@@ -409,12 +415,58 @@ def flipPieces(color, x_coord, y_coord):
   flipSE(x_coord, y_coord)
 
 #7 ------------------------------------------------------------------------------------------------------------
+# Keeps track of white and black pieces on the board currently
+def liveScore(drawTable):
+  # draws table only once alnong with the board
+  if drawTable == True:
+    turtle.penup()
+    turtle.goto(-150, -175)
+    turtle.pendown()
+    for i in range (2):
+      turtle.forward(300)
+      turtle.right(90)
+      turtle.forward(100)
+      turtle.right(90)
+    turtle.penup()
+    turtle.goto(-150,-200)
+    turtle.pendown()
+    turtle.forward(300)
+    turtle.penup()
+    turtle.goto(0, -175)
+    turtle.right(90)
+    turtle.pendown()
+    turtle.forward(100)
+    turtle.penup()
+    turtle.hideturtle() 
+    turtle.goto(-75 ,-197)
+    turtle.write("White", font=("", 12, ""), align="center")
+    turtle.goto(75 ,-197)
+    turtle.write("Black", font=("", 12, ""), align="center")
+  def mask():
+    for i in range(2):
+      turtle.fillcolor("lightblue")
+      turtle.begin_fill()
+      turtle.forward(72)
+      turtle.right(90)
+      turtle.forward(147)
+      turtle.right(90)
+      turtle.end_fill()
+  turtle.setpos(-1, -202)
+  mask()
+  turtle.setpos(-75, -265)
+  turtle.write(len(filled_spaces_white), font=("", 36, ""), align="center")
+
+  turtle.setpos(149, -202)
+  mask()
+  turtle.setpos(75, -265)
+  turtle.write(len(filled_spaces_black), font=("", 36, ""), align="center")
+
+#8 ------------------------------------------------------------------------------------------------------------
 # TO DO: Make Scores change --> Sharvari
+# Keeps track of rounds won by each player
 def scoreBoard():
   # win counter
-  global winsWhite
   winsWhite = 0
-  global winsBlack
   winsBlack = 0
   # drawing board
   turtle.clearscreen()
