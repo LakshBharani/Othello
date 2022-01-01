@@ -121,7 +121,6 @@ def startGame():
         x_coord = coord[0].casefold()
         y_coord = coord[1:].casefold()
 
-        # TO DO: ADD CONDITION TO CHECK IF LEGAL MOVE (isLegal = true?) --> Nishtha
         if (x_coord+y_coord) not in filled_spaces_white and (x_coord+y_coord) not in filled_spaces_black and x_coord in x.keys() and y_coord in y.keys():
           checkDirection(color, x_coord, y_coord)
           if isReadyToPlace == True:
@@ -152,7 +151,6 @@ def startGame():
         x_coord = coord[0].casefold()
         y_coord = coord[1:].casefold()
 
-        # TO DO: ADD CONDITION TO CHECK IF LEGAL MOVE (isLegal = true?) --> Nishtha
         if (x_coord+y_coord) not in filled_spaces_black and (x_coord+y_coord) not in filled_spaces_white and x_coord in x.keys() and y_coord in y.keys():
           checkDirection(color, x_coord, y_coord)
           if isReadyToPlace == True:
@@ -187,8 +185,6 @@ def showRules():
   start = False
   pen.up()
   pen.hideturtle()
-
-  # TO DO: Fill in rules
   pen.setpos(-115,180)
   pen.write('''
 RULES FOR OTHELLO
@@ -241,7 +237,6 @@ def placePiece(color, x_coord, y_coord):
   pen.end_fill()
 
 #6 ------------------------------------------------------------------------------------------------------------
-# TO DO: Check in which direction flipping to be done
 def flipPieces(color, x_coord, y_coord):
   ogY_coord = y_coord
   ogX_coord = x_coord
@@ -455,7 +450,6 @@ def liveScore(drawTable):
   turtle.write(len(filled_spaces_black), font=("", 36, ""), align="center")
 
 #8 ------------------------------------------------------------------------------------------------------------
-# TO DO: Make Scores change --> Sharvari
 # Keeps track of rounds won by each player
 def scoreBoard():
   # win counter
