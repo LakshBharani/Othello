@@ -1,4 +1,4 @@
-# 1 player mode (Player vs Bot)
+# 1 player mode (Player vs Bot - Hard)
 
 import turtle
 from typing import final
