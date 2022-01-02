@@ -13,6 +13,10 @@ x = {"a":-145, "b":-105, "c":-65, "d":-25, "e":15, "f":55, "g":95, "h":135}
 global y
 y = {"1":-124, "2": -84, "3":-44, "4":-4, "5":36, "6":76, "7":116, "8":156}
 
+# win counter
+winsWhite = 0
+winsBlack = 0
+
 #1 -----------------------------------------------------------------------------------------------------------
 def drawBoard():
   sc = turtle.Screen()
@@ -103,8 +107,8 @@ def drawBoard():
 
 #2 -----------------------------------------------------------------------------------------------------------
 def startGame():
-  empty_spaces_white = 30
-  empty_spaces_black = 30
+  empty_spaces_white = 2
+  empty_spaces_black = 2
 
   while empty_spaces_white != 0 or empty_spaces_black != 0:
     global x_coord
@@ -171,6 +175,10 @@ def startGame():
       else:
         print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
   else:
+    for i in range (3, 0, -1):
+      print(Fore.RED + "Loading scoreboard", str(i) + "..." + Fore.GREEN)
+      time.sleep(1)
+    print("Game Over" + Fore.RESET)
     scoreBoard()  
 
 #3 -----------------------------------------------------------------------------------------------------------
@@ -403,109 +411,6 @@ def flipPieces(color, x_coord, y_coord):
     flipSE(x_coord, y_coord)
 
 #7 ------------------------------------------------------------------------------------------------------------
-# Keeps track of white and black pieces on the board currently
-def liveScore(drawTable):
-  # draws table only once alnong with the board
-  if drawTable == True:
-    turtle.penup()
-    turtle.goto(-150, -175)
-    turtle.pendown()
-    for i in range (2):
-      turtle.forward(300)
-      turtle.right(90)
-      turtle.forward(100)
-      turtle.right(90)
-    turtle.penup()
-    turtle.goto(-150,-200)
-    turtle.pendown()
-    turtle.forward(300)
-    turtle.penup()
-    turtle.goto(0, -175)
-    turtle.right(90)
-    turtle.pendown()
-    turtle.forward(100)
-    turtle.penup()
-    turtle.hideturtle() 
-    turtle.goto(-75 ,-197)
-    turtle.write("White", font=("", 12, ""), align="center")
-    turtle.goto(75 ,-197)
-    turtle.write("Black", font=("", 12, ""), align="center")
-  def mask():
-    for i in range(2):
-      turtle.fillcolor("lightblue")
-      turtle.begin_fill()
-      turtle.forward(72)
-      turtle.right(90)
-      turtle.forward(147)
-      turtle.right(90)
-      turtle.end_fill()
-  turtle.setpos(-1, -202)
-  mask()
-  turtle.setpos(-75, -265)
-  turtle.write(len(filled_spaces_white), font=("", 36, ""), align="center")
-
-  turtle.setpos(149, -202)
-  mask()
-  turtle.setpos(75, -265)
-  turtle.write(len(filled_spaces_black), font=("", 36, ""), align="center")
-
-#8 ------------------------------------------------------------------------------------------------------------
-# Keeps track of rounds won by each player
-def scoreBoard():
-  # win counter
-  winsWhite = 0
-  winsBlack = 0
-  # drawing board
-  turtle.clearscreen()
-  turtle.hideturtle()
-  turtle.pensize(3)
-  turtle.penup()
-  turtle.goto(-100,207)
-  turtle.write("SCOREBOARD", font = ("", 20, ""))
-  turtle.goto(-250, 150)
-  turtle.showturtle()
-  turtle.pendown()
-  for i in range (2):
-    turtle.forward(500)
-    turtle.right(90)
-    turtle.forward(200)
-    turtle.right(90)
-  turtle.setpos(-250,110)
-  turtle.forward(500)
-  turtle.penup()
-  turtle.goto(0, 150)
-  turtle.right(90)
-  turtle.pendown()
-  turtle.forward(200)
-  turtle.hideturtle()
-  turtle.speed(100)
-  turtle.penup()
-  turtle.goto(-150, 120)
-  turtle.write("White", font = ("", 15, ""))
-  turtle.goto(105, 120)
-  turtle.write("Black", font = ("", 15, ""))
-  turtle.goto(-150, 0)
-  turtle.write(winsWhite, font = ("", 50, ""))
-  turtle.goto(110, 0)
-  turtle.write(winsBlack, font = ("", 50, ""))
-
-  # Replay game
-  restart = input("Play Again (y/n): ")
-  turtle.clearscreen()
-  if restart == "y":
-    drawBoard()
-  else:
-    turtle.clearscreen()
-    turtle.hideturtle()
-    turtle.penup()
-    turtle.write("Thank you for playing", font = ("", 30, ""), align = 'center')
-    for i in range (5, 0, -1):
-      print(Fore.RED + "Closing in", str(i) + "..." + Fore.GREEN)
-      time.sleep(1)
-    print("Goodbye" + Fore.RESET)
-    exit()
-
-#8 ------------------------------------------------------------------------------------------------------------
 def checkDirection(color, x_coord, y_coord):
   global isReadyToPlace
   isReadyToPlace = False
@@ -634,3 +539,114 @@ def checkDirection(color, x_coord, y_coord):
       break
     elif coord not in toBeChecked:
       break
+
+#8 ------------------------------------------------------------------------------------------------------------
+# Keeps track of white and black pieces on the board currently
+def liveScore(drawTable):
+  # draws table only once alnong with the board
+  if drawTable == True:
+    turtle.penup()
+    turtle.goto(-150, -175)
+    turtle.pendown()
+    for i in range (2):
+      turtle.forward(300)
+      turtle.right(90)
+      turtle.forward(100)
+      turtle.right(90)
+    turtle.penup()
+    turtle.goto(-150,-200)
+    turtle.pendown()
+    turtle.forward(300)
+    turtle.penup()
+    turtle.goto(0, -175)
+    turtle.right(90)
+    turtle.pendown()
+    turtle.forward(100)
+    turtle.penup()
+    turtle.hideturtle() 
+    turtle.goto(-75 ,-197)
+    turtle.write("White", font=("", 12, ""), align="center")
+    turtle.goto(75 ,-197)
+    turtle.write("Black", font=("", 12, ""), align="center")
+  def mask():
+    for i in range(2):
+      turtle.fillcolor("lightblue")
+      turtle.begin_fill()
+      turtle.forward(72)
+      turtle.right(90)
+      turtle.forward(147)
+      turtle.right(90)
+      turtle.end_fill()
+  turtle.setpos(-1, -202)
+  mask()
+  turtle.setpos(-75, -265)
+  turtle.write(len(filled_spaces_white), font=("", 36, ""), align="center")
+
+  turtle.setpos(149, -202)
+  mask()
+  turtle.setpos(75, -265)
+  turtle.write(len(filled_spaces_black), font=("", 36, ""), align="center")
+
+#9 ------------------------------------------------------------------------------------------------------------
+# Keeps track of rounds won by each player
+def scoreBoard():
+  # win counter
+  global winsWhite
+  global winsBlack
+  # drawing board
+  turtle.clearscreen()
+  turtle.hideturtle()
+  turtle.pensize(3)
+  turtle.penup()
+  turtle.goto(-100,207)
+  turtle.write("SCOREBOARD", font = ("", 20, ""))
+  turtle.goto(-250, 150)
+  turtle.showturtle()
+  turtle.pendown()
+  for i in range (2):
+    turtle.forward(500)
+    turtle.right(90)
+    turtle.forward(200)
+    turtle.right(90)
+  turtle.setpos(-250,110)
+  turtle.forward(500)
+  turtle.penup()
+  turtle.goto(0, 150)
+  turtle.right(90)
+  turtle.pendown()
+  turtle.forward(200)
+  turtle.hideturtle()
+  turtle.speed(100)
+  turtle.penup()
+  turtle.goto(-150, 120)
+  # updating wins based on number of pieces of each color at end of the game
+  if len(filled_spaces_white) > len(filled_spaces_black):
+    winsWhite += 1
+  elif len(filled_spaces_black) > len(filled_spaces_white):
+    winsBlack += 1
+  elif len(filled_spaces_white) == len(filled_spaces_black):
+    winsBlack += 1
+    winsWhite += 1
+  turtle.write("White", font = ("", 15, ""))
+  turtle.goto(105, 120)
+  turtle.write("Black", font = ("", 15, ""))
+  turtle.goto(-150, 0)
+  turtle.write(winsWhite, font = ("", 50, ""))
+  turtle.goto(110, 0)
+  turtle.write(winsBlack, font = ("", 50, ""))
+
+  # Replay game
+  restart = input("Play Again (y/n): ")
+  turtle.clearscreen()
+  if restart == "y":
+    drawBoard()
+  else:
+    turtle.clearscreen()
+    turtle.hideturtle()
+    turtle.penup()
+    turtle.write("Thank you for playing", font = ("", 30, ""), align = 'center')
+    for i in range (5, 0, -1):
+      print(Fore.RED + "Closing in", str(i) + "..." + Fore.GREEN)
+      time.sleep(1)
+    print("Goodbye" + Fore.RESET)
+    exit()

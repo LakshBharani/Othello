@@ -14,6 +14,12 @@ x = {"a":-145, "b":-105, "c":-65, "d":-25, "e":15, "f":55, "g":95, "h":135}
 global y
 y = {"1":-124, "2": -84, "3":-44, "4":-4, "5":36, "6":76, "7":116, "8":156}
 
+# win counter
+global winsWhite
+winsWhite = 0
+global winsBlack
+winsBlack = 0
+
 #1 -----------------------------------------------------------------------------------------------------------
 def drawBoard():
   sc = turtle.Screen()
@@ -447,13 +453,11 @@ def liveScore(drawTable):
   turtle.write(len(filled_spaces_black), font=("", 36, ""), align="center")
 
 #8 ------------------------------------------------------------------------------------------------------------
-
 # Keeps track of rounds won by each player
 def scoreBoard():
-  # win counter
-  winsWhite = 0
-  winsBlack = 0
   # drawing board
+  global winsWhite
+  global winsBlack
   turtle.clearscreen()
   turtle.hideturtle()
   turtle.pensize(3)
@@ -479,6 +483,14 @@ def scoreBoard():
   turtle.speed(100)
   turtle.penup()
   turtle.goto(-150, 120)
+  # updating wins based on number of pieces of each color at end of the game
+  if filled_spaces_white > filled_spaces_black:
+    winsWhite += 1
+  elif filled_spaces_black > filled_spaces_white:
+    winsBlack += 1
+  elif filled_spaces_white == filled_spaces_black:
+    winsBlack += 1
+    winsWhite += 1
   turtle.write("White", font = ("", 15, ""))
   turtle.goto(105, 120)
   turtle.write("Black", font = ("", 15, ""))
@@ -503,7 +515,7 @@ def scoreBoard():
     print("Goodbye" + Fore.RESET)
     exit()
 
-#8 ------------------------------------------------------------------------------------------------------------
+#9 ------------------------------------------------------------------------------------------------------------
 def checkDirection(color, x_coord, y_coord):
   global isReadyToPlace
   isReadyToPlace = False
@@ -660,7 +672,7 @@ def checkDirection(color, x_coord, y_coord):
     elif coord not in toBeChecked:
       break
 
-#9 ------------------------------------------------------------------------------------------------------------
+#10 ------------------------------------------------------------------------------------------------------------
 def decideBotMove(color):
   global finalBotCoord
   finalBotCoord = ""
@@ -686,7 +698,5 @@ def decideBotMove(color):
         if isReadyToPlace == True:
           if piecesFlipped == tempPiecesFlipped:
             liCoords.append(tempCoord)
-
   finalBotCoord = random.choice(liCoords)
 
-          
