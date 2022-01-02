@@ -589,24 +589,24 @@ def liveScore(drawTable):
       for i in range(2):
         turtle.fillcolor(color)
         turtle.begin_fill()
-        turtle.forward(20)
+        turtle.forward(22)
         turtle.right(90)
         turtle.forward(147)
         turtle.right(90)
         turtle.end_fill()
   
     if whiteTurn == True:
-      currentPlayerMask(-1, -178, "yellow")
+      currentPlayerMask(-1, -177, "yellow")
       turtle.goto(-75 ,-197)
       turtle.write("White", font=("", 12, ""), align="center")
-      currentPlayerMask(149, -178, "white")
+      currentPlayerMask(149, -177, "white")
       turtle.goto(75 ,-197)
       turtle.write("Black", font=("", 12, ""), align="center")
     elif whiteTurn == False:
-      currentPlayerMask(149, -178, "yellow")
+      currentPlayerMask(149, -177, "yellow")
       turtle.goto(75 ,-197)
       turtle.write("Black", font=("", 12, ""), align="center")
-      currentPlayerMask(-1, -178, "white")
+      currentPlayerMask(-1, -177, "white")
       turtle.goto(-75 ,-197)
       turtle.write("White", font=("", 12, ""), align="center")
 
