@@ -543,7 +543,7 @@ def checkDirection(color, x_coord, y_coord):
 #8 ------------------------------------------------------------------------------------------------------------
 # Keeps track of white and black pieces on the board currently
 def liveScore(drawTable):
-  # draws table only once alnong with the board
+  # draws table only once along with the board
   if drawTable == True:
     turtle.penup()
     turtle.goto(-150, -175)
