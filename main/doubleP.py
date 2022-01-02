@@ -117,6 +117,7 @@ def startGame():
 
     # White player's turn
     if whiteTurn == True:
+      highlightActivePlayer()
       color = "white"
       print(Fore.YELLOW + "------- White -------" + Fore.RESET)
       coord = input("Enter coordinates: " + Fore.YELLOW)
@@ -147,6 +148,7 @@ def startGame():
 
       # Black player's turn
     else:
+      highlightActivePlayer()
       color = "black"
       print(Fore.BLUE + "------- Black -------" + Fore.RESET)
       coord = input("Enter coordinates: " + Fore.BLUE)
@@ -568,7 +570,8 @@ def liveScore(drawTable):
     turtle.write("White", font=("", 12, ""), align="center")
     turtle.goto(75 ,-197)
     turtle.write("Black", font=("", 12, ""), align="center")
-  def mask():
+  def mask(x, y):
+    turtle.setpos(x, y)
     for i in range(2):
       turtle.fillcolor("lightblue")
       turtle.begin_fill()
@@ -577,13 +580,41 @@ def liveScore(drawTable):
       turtle.forward(147)
       turtle.right(90)
       turtle.end_fill()
-  turtle.setpos(-1, -202)
-  mask()
+
+  # shows whose turn it is
+  global highlightActivePlayer 
+  def highlightActivePlayer():
+    def currentPlayerMask(x, y, color):
+      turtle.setpos(x, y)
+      for i in range(2):
+        turtle.fillcolor(color)
+        turtle.begin_fill()
+        turtle.forward(20)
+        turtle.right(90)
+        turtle.forward(147)
+        turtle.right(90)
+        turtle.end_fill()
+  
+    if whiteTurn == True:
+      currentPlayerMask(-1, -178, "yellow")
+      turtle.goto(-75 ,-197)
+      turtle.write("White", font=("", 12, ""), align="center")
+      currentPlayerMask(149, -178, "white")
+      turtle.goto(75 ,-197)
+      turtle.write("Black", font=("", 12, ""), align="center")
+    elif whiteTurn == False:
+      currentPlayerMask(149, -178, "yellow")
+      turtle.goto(75 ,-197)
+      turtle.write("Black", font=("", 12, ""), align="center")
+      currentPlayerMask(-1, -178, "white")
+      turtle.goto(-75 ,-197)
+      turtle.write("White", font=("", 12, ""), align="center")
+
+  mask(-1, -202)
   turtle.setpos(-75, -265)
   turtle.write(len(filled_spaces_white), font=("", 36, ""), align="center")
 
-  turtle.setpos(149, -202)
-  mask()
+  mask(149, -202)
   turtle.setpos(75, -265)
   turtle.write(len(filled_spaces_black), font=("", 36, ""), align="center")
 
