@@ -540,8 +540,8 @@ def checkDirection(color, x_coord, y_coord):
       inN = True
       isReadyToPlace = True
       break
-    else:
-      continue
+    elif coord not in toBeChecked:
+      break
 
   # checking in S
   y_coord = str(int(ogY_coord) - 1)
@@ -552,8 +552,8 @@ def checkDirection(color, x_coord, y_coord):
       inS = True
       isReadyToPlace = True
       break
-    else:
-      continue
+    elif coord not in toBeChecked:
+      break
 
   # checking in E
   x_coord = chr(ord(ogX_coord) + 1)
@@ -564,8 +564,8 @@ def checkDirection(color, x_coord, y_coord):
       inE = True
       isReadyToPlace = True
       break
-    else:
-      continue
+    elif coord not in toBeChecked:
+      break
 
   # checking in W
   x_coord = chr(ord(ogX_coord) - 1)
@@ -576,8 +576,8 @@ def checkDirection(color, x_coord, y_coord):
       inW = True
       isReadyToPlace = True
       break
-    else:
-      continue
+    elif coord not in toBeChecked:
+      break
 
   # checking in NE
   x_coord = chr(ord(ogX_coord) + 1)
@@ -590,8 +590,8 @@ def checkDirection(color, x_coord, y_coord):
       inNE = True
       isReadyToPlace = True
       break
-    else:
-      continue
+    elif coord not in toBeChecked:
+      break
 
   # checking in SE
   x_coord = chr(ord(ogX_coord) + 1)
@@ -604,8 +604,8 @@ def checkDirection(color, x_coord, y_coord):
       inSE = True
       isReadyToPlace = True
       break
-    else:
-      continue
+    elif coord not in toBeChecked:
+      break
 
   # checking in NW
   x_coord = chr(ord(ogX_coord) - 1)
@@ -618,8 +618,8 @@ def checkDirection(color, x_coord, y_coord):
       inNW = True
       isReadyToPlace = True
       break
-    else:
-      continue
+    elif coord not in toBeChecked:
+      break
 
   # checking in SW
   x_coord = chr(ord(ogX_coord) - 1)
@@ -632,5 +632,5 @@ def checkDirection(color, x_coord, y_coord):
       inSW = True
       isReadyToPlace = True
       break
-    else:
-      continue
+    elif coord not in toBeChecked:
+      break
