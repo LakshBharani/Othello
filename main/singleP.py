@@ -174,6 +174,10 @@ def startGame():
         empty_spaces_white = 0
 
   else:
+    for i in range (3, 0, -1):
+      print(Fore.RED + "Loading scoreboard", str(i) + "..." + Fore.GREEN)
+      time.sleep(1)
+    print("Game Over" + Fore.RESET)
     scoreBoard()  
 
 #3 -----------------------------------------------------------------------------------------------------------
