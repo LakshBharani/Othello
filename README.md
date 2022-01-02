@@ -15,11 +15,11 @@ Akshay, Laksh, Nishtha, Sharvari
 * Lists
 * Dictionaries
 * Turtle
+* Time
+* colorama
 # Preview:
 <img src="https://user-images.githubusercontent.com/80910691/144286646-299d689d-7098-435a-87f0-ef922df8d66d.png" height="400"></a>
-
 # How to play:
 https://www.youtube.com/watch?v=xDnYEOsjZnM
-
 # Project Proposal:
 https://docs.google.com/document/d/1FrO_3xfWTO8MhtDFyqpwTruskuzC3GfwSrlFv-tvYug/edit
