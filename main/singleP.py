@@ -408,7 +408,7 @@ def flipPieces(color, x_coord, y_coord):
 #7 ------------------------------------------------------------------------------------------------------------
 # Keeps track of white and black pieces on the board currently
 def liveScore(drawTable):
-  # draws table only once alnong with the board
+  # draws table only once along with the board
   if drawTable == True:
     turtle.penup()
     turtle.goto(-150, -175)
@@ -520,6 +520,7 @@ def checkDirection(color, x_coord, y_coord):
   global isReadyToPlace
   isReadyToPlace = False
   
+  # booleans to keep track of direction
   global inN, inS, inE, inW,inNE, inNW, inSE, inSW
   inN = False
   inS = False
@@ -530,6 +531,7 @@ def checkDirection(color, x_coord, y_coord):
   inSW = False
   inNW = False
 
+  # count num of pieces flipped by bot on every sqaure
   global piecesFlipped
   piecesFlipped = 0
 
