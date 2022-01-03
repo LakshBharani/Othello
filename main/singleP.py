@@ -153,8 +153,7 @@ def startGame():
     else:
       highlightActivePlayer()
       color = "black"
-      print(Fore.BLUE + "------- Black -------" + Fore.RESET)
-      print("Enter coordinates: " + Fore.BLUE, end = "")
+      print(Fore.BLUE + "------- Black -------" + Fore.RESET + "\n" "Enter coordinates: " + Fore.BLUE, end = "")
       decideBotMove(color)
       time.sleep(2)
       print(finalBotCoord)
