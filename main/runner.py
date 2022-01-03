@@ -7,12 +7,12 @@ from colorama import Fore
 #1 -----------------------------------------------------------------------------------------------------------
 def main():
     # input with colored text
-    choice = int(input(Fore.LIGHTMAGENTA_EX + ''' 
-  ____    _     _               _   _
- / __ \  | |_  | |_      ____  | | | |   ___
-| |  | | | __| |  _ \   /  . \ | | | |  / _ \ 
-| |__| | | |_  | | | | |  \__/ | | | | | |_| |
- \____/   \__| |_| |_|  \____\ |_| |_|  \___/
+    print(Fore.LIGHTMAGENTA_EX + ''' 
+  ____    _     _              _   _
+ / __ \  | |_  | |_     ____  | | | |   ___
+| |  | | | __| |  _ \  /  . \ | | | |  / _ \ 
+| |__| | | |_  | | | | | \__/ | | | | | |_| |
+ \____/   \__| |_| |_| \____\ |_| |_|  \___/
 ''' 
 + Fore.LIGHTCYAN_EX +
 '''
@@ -22,13 +22,20 @@ def main():
             ==================
             |    2 Player    |
             ================== 
-''' + Fore.RESET + '''
-Number of players (1/2): '''))
-    if choice == 1:
+''' + Fore.RESET)
+    choice = ""
+    while choice != "1" or "2":
+        choice = input("Number of players (1/2): ")
+        if choice == "1" or choice == "2":
+            break
+        else:
+            print(Fore.RED + "ERROR: Invalid option" + Fore.RESET)
+
+    if choice == "1":
         from singleP import drawBoard
         drawBoard()
 
-    elif choice == 2:
+    elif choice == "2":
         from doubleP import drawBoard
         drawBoard()
 
