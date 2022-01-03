@@ -7,16 +7,21 @@ from colorama import Fore
 #1 -----------------------------------------------------------------------------------------------------------
 def main():
     # input with colored text
-    choice = int(input(Fore.LIGHTCYAN_EX + ''' 
-            Welcome to Othello''' + Fore.LIGHTRED_EX + '''
-            ******************''' + Fore.LIGHTGREEN_EX +
+    choice = int(input(Fore.LIGHTMAGENTA_EX + ''' 
+  ____    _     _               _   _
+ / __ \  | |_  | |_      ____  | | | |   ___
+| |  | | | __| |  _ \   /  . \ | | | |  / _ \ 
+| |__| | | |_  | | | | |  \__/ | | | | | |_| |
+ \____/   \__| |_| |_|  \___\  |_| |_|  \___/
+''' 
++ Fore.LIGHTCYAN_EX +
 '''
             ==================
             |    1 Player    |
             ==================
             ==================
             |    2 Player    |
-            ==================
+            ================== 
 ''' + Fore.RESET + '''
 Number of players (1/2): '''))
     if choice == 1:
