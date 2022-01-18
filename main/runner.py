@@ -7,7 +7,7 @@ from colorama import Fore
 #1 -----------------------------------------------------------------------------------------------------------
 def main():
     # input with colored text
-    print(Fore.LIGHTMAGENTA_EX + ''' 
+    print(Fore.LIGHTGREEN_EX + ''' 
   ____    _     _              _   _
  / __ \  | |_  | |_     ____  | | | |   ___
 | |  | | | __| |  _ \  /  . \ | | | |  / _ \ 
