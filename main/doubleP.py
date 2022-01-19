@@ -107,6 +107,7 @@ def drawBoard():
 
 #2 -----------------------------------------------------------------------------------------------------------
 def startGame():
+  # initialising counter (tracks number of filled squares)
   empty_spaces_white = 2
   empty_spaces_black = 2
 
@@ -177,7 +178,7 @@ def startGame():
       else:
         print(Fore.RED + "Invalid move: Try again" + Fore.RESET)
   else:
-    for i in range (3, 0, -1):
+    for i in range (5, 0, -1):
       print(Fore.RED + "Loading scoreboard", str(i) + "..." + Fore.GREEN)
       time.sleep(1)
     print("Game Over" + Fore.RESET)
@@ -584,6 +585,7 @@ def liveScore(drawTable):
   # shows whose turn it is
   global highlightActivePlayer 
   def highlightActivePlayer():
+    # add a yellow mask over the current players name tile in live scoreboard
     def currentPlayerMask(x, y, color):
       turtle.setpos(x, y)
       for i in range(2):

@@ -158,28 +158,19 @@ def startGame():
       time.sleep(2)
       print(finalBotCoord)
       print(Fore.RESET, end="")
-
-      # runs till bot runs out of squares to place a piece
-      if finalBotCoord != "":
-        x_coord = finalBotCoord[0].casefold()
-        y_coord = finalBotCoord[1:].casefold()
-        placePiece(color, x_coord, y_coord)
-        empty_spaces_black -= 1
-        filled_spaces_black.append(finalBotCoord)
-        checkDirection(color, x_coord, y_coord)
-        flipPieces(color, x_coord, y_coord)
-        liveScore(drawTable=False)
-        whiteTurn = True
-      else:
-        empty_spaces_black = 0
-        empty_spaces_white = 0
-
+      
+      x_coord = finalBotCoord[0].casefold()
+      y_coord = finalBotCoord[1:].casefold()
+      placePiece(color, x_coord, y_coord)
+      empty_spaces_black -= 1
+      filled_spaces_black.append(finalBotCoord)
+      checkDirection(color, x_coord, y_coord)
+      flipPieces(color, x_coord, y_coord)
+      liveScore(drawTable=False)
+      whiteTurn = True
+     
   else:
-    for i in range (3, 0, -1):
-      print(Fore.RED + "Loading scoreboard", str(i) + "..." + Fore.GREEN)
-      time.sleep(1)
-    print("Game Over" + Fore.RESET)
-    scoreBoard()  
+    endGame() 
 
 #3 -----------------------------------------------------------------------------------------------------------
 def goToBoard():
@@ -734,5 +725,16 @@ def decideBotMove(color):
         if isReadyToPlace == True:
           if piecesFlipped == tempPiecesFlipped:
             liCoords.append(tempCoord)
-  finalBotCoord = random.choice(liCoords)
+  if len(liCoords) != 0:
+    finalBotCoord = random.choice(liCoords)
+  else:
+    print(Fore.BLUE + "No possible moves found")
+    endGame()
 
+#11 ------------------------------------------------------------------------------------------------------------
+def endGame():
+    for i in range (5, 0, -1):
+      print(Fore.RED + "Loading scoreboard", str(i) + "..." + Fore.GREEN)
+      time.sleep(1)
+    print("Game Over" + Fore.RESET)
+    scoreBoard()
