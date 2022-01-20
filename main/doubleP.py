@@ -108,8 +108,8 @@ def drawBoard():
 #2 -----------------------------------------------------------------------------------------------------------
 def startGame():
   # initialising counter (tracks number of filled squares)
-  empty_spaces_white = 2
-  empty_spaces_black = 2
+  empty_spaces_white = 30
+  empty_spaces_black = 30
 
   while empty_spaces_white != 0 or empty_spaces_black != 0:
     global x_coord
