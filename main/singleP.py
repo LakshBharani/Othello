@@ -155,7 +155,7 @@ def startGame():
       color = "black"
       print(Fore.BLUE + "------- Black -------" + Fore.RESET + "\n" "Enter coordinates: " + Fore.BLUE, end = "")
       decideBotMove(color)
-      time.sleep(2)
+      time.sleep(3)
       print(finalBotCoord)
       print(Fore.RESET, end="")
       
