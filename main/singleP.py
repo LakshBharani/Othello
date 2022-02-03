@@ -28,6 +28,7 @@ def drawBoard():
   # create turtle
   global pen
   pen = turtle.Turtle()
+  sc.title("Othello --> Single Player")
 
   # method to draw square
   def drawSquare():
@@ -43,6 +44,12 @@ def drawBoard():
   showRules()
 
 # start drawing game board once rules read
+
+  # Board heading
+  pen.up()
+  pen.goto(0, 210)
+  pen.write("Othello", font=("", 50, ""), align="center")
+
   # loops for board
   for i in range(8):
     pen.up()
@@ -122,9 +129,14 @@ def startGame():
     if whiteTurn == True:
       highlightActivePlayer()
       color = "white"
-      print(Fore.YELLOW + "------- White -------" + Fore.RESET)
-      coord = input("Enter coordinates: " + Fore.YELLOW)
+      print(Fore.YELLOW + "------- White -------" + Fore.RESET + "\n" "Enter coordinates: " + Fore.YELLOW, end = "")
+      decideBotMove(color)
+      coord = input(Fore.YELLOW)
       print(Fore.RESET, end="")
+      # pass turn
+      # if coord == "p" or coord == "P":
+      #   whiteTurn = False
+      #   continue
       if len(coord) != 0:
         x_coord = coord[0].casefold()
         y_coord = coord[1:].casefold()
@@ -728,7 +740,10 @@ def decideBotMove(color):
   if len(liCoords) != 0:
     finalBotCoord = random.choice(liCoords)
   else:
-    print(Fore.BLUE + "No possible moves found")
+    if whiteTurn == True:
+      print(Fore.YELLOW + "No possible moves found")
+    else:
+      print(Fore.BLUE + "No possible moves found")
     endGame()
 
 #11 ------------------------------------------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 # 2 player mode (Player vs Player)
 
+import random
 import turtle
 from colorama import Fore
 import time
@@ -25,6 +26,7 @@ def drawBoard():
   # create turtle
   global pen
   pen = turtle.Turtle()
+  sc.title("Othello --> Double Player")
 
   # method to draw square
   def drawSquare():
@@ -40,6 +42,11 @@ def drawBoard():
   showRules()
 
 # start drawing game board once rules read
+# Board heading
+  pen.up()
+  pen.goto(0, 210)
+  pen.write("Othello", font=("", 50, ""), align="center")
+
   # loops for board
   for i in range(8):
     pen.up()
@@ -418,6 +425,7 @@ def checkDirection(color, x_coord, y_coord):
   global isReadyToPlace
   isReadyToPlace = False
   
+  # booleans to keep track of direction
   global inN, inS, inE, inW,inNE, inNW, inSE, inSW
   inN = False
   inS = False
@@ -427,6 +435,10 @@ def checkDirection(color, x_coord, y_coord):
   inSE = False
   inSW = False
   inNW = False
+
+  # count num of pieces flipped by bot on every sqaure
+  global piecesFlipped
+  piecesFlipped = 0
 
   # initial coords
   ogY_coord = y_coord
@@ -440,108 +452,167 @@ def checkDirection(color, x_coord, y_coord):
     endPiece = filled_spaces_black
 
   # checking in N
+  counter = 0
   y_coord = str(int(ogY_coord) + 1)
   while (ogX_coord + str(int(ogY_coord) + 1)) in toBeChecked and y_coord in y:
     y_coord = str(int(y_coord) + 1)
     coord = x_coord+y_coord
+    counter += 1
     if coord in endPiece:
       inN = True
       isReadyToPlace = True
+      piecesFlipped += counter
       break
     elif coord not in toBeChecked:
       break
 
   # checking in S
+  counter = 0
   y_coord = str(int(ogY_coord) - 1)
   while (ogX_coord + str(int(ogY_coord) - 1)) in toBeChecked and y_coord in y:
     y_coord = str(int(y_coord)-1)
     coord = x_coord+y_coord
+    counter += 1
     if coord in endPiece:
       inS = True
       isReadyToPlace = True
+      piecesFlipped += counter
       break
     elif coord not in toBeChecked:
       break
 
   # checking in E
+  counter = 0
   x_coord = chr(ord(ogX_coord) + 1)
   while (chr(ord(ogX_coord) + 1) + ogY_coord) in toBeChecked and x_coord in x:
     x_coord = chr(ord(x_coord) + 1)
     coord = x_coord + ogY_coord
+    counter += 1
     if coord in endPiece:
       inE = True
       isReadyToPlace = True
+      piecesFlipped += counter
       break
     elif coord not in toBeChecked:
       break
 
   # checking in W
+  counter = 0
   x_coord = chr(ord(ogX_coord) - 1)
   while (chr(ord(ogX_coord) - 1) + ogY_coord) in toBeChecked and x_coord in x:
     x_coord = chr(ord(x_coord) - 1)
     coord = x_coord + ogY_coord
+    counter += 1
     if coord in endPiece:
       inW = True
       isReadyToPlace = True
+      piecesFlipped += counter
       break
     elif coord not in toBeChecked:
       break
 
   # checking in NE
+  counter = 0
   x_coord = chr(ord(ogX_coord) + 1)
   y_coord = str(int(ogY_coord) + 1)
   while (chr(ord(ogX_coord) + 1) + str(int(ogY_coord) + 1)) in toBeChecked and y_coord in y and x_coord in x:
     x_coord = chr(ord(x_coord) + 1)
     y_coord = str(int(y_coord) + 1)
     coord = x_coord+y_coord
+    counter += 1
     if coord in endPiece:
       inNE = True
       isReadyToPlace = True
+      piecesFlipped += counter
       break
     elif coord not in toBeChecked:
       break
 
   # checking in SE
+  counter = 0
   x_coord = chr(ord(ogX_coord) + 1)
   y_coord = str(int(ogY_coord) - 1)
   while (chr(ord(ogX_coord) + 1) + str(int(ogY_coord) - 1)) in toBeChecked and y_coord in y and x_coord in x:
     x_coord = chr(ord(x_coord) + 1)
     y_coord = str(int(y_coord) - 1)
     coord = x_coord + y_coord
+    counter += 1
     if coord in endPiece:
       inSE = True
       isReadyToPlace = True
+      piecesFlipped += counter
       break
     elif coord not in toBeChecked:
       break
 
   # checking in NW
+  counter = 0
   x_coord = chr(ord(ogX_coord) - 1)
   y_coord = str(int(ogY_coord) + 1)
   while (chr(ord(ogX_coord) - 1) + str(int(ogY_coord) + 1)) in toBeChecked and y_coord in y and x_coord in x:
     x_coord = chr(ord(x_coord) - 1)
     y_coord = str(int(y_coord) + 1)
     coord = x_coord+y_coord
+    counter += 1
     if coord in endPiece:
       inNW = True
       isReadyToPlace = True
+      piecesFlipped += counter
       break
     elif coord not in toBeChecked:
       break
 
   # checking in SW
+  counter = 0
   x_coord = chr(ord(ogX_coord) - 1)
   y_coord = str(int(ogY_coord) - 1)
   while (chr(ord(ogX_coord) - 1) + str(int(ogY_coord) - 1)) in toBeChecked and y_coord in y and x_coord in x:
     x_coord = chr(ord(x_coord) - 1)
     y_coord = str(int(y_coord) - 1)
     coord = x_coord+y_coord
+    counter += 1
     if coord in endPiece:
       inSW = True
       isReadyToPlace = True
+      piecesFlipped += counter
       break
     elif coord not in toBeChecked:
       break
+
+#10 ------------------------------------------------------------------------------------------------------------
+def decideBotMove(color):
+  global finalBotCoord
+  finalBotCoord = ""
+  tempPiecesFlipped = 0
+  # list with all coords which flip max pieces
+  liCoords = []
+
+  # check on which coords max pieces will flip (hard difficulty bot)
+  for x_coord in x:
+    for y_coord in y:
+      tempCoord = x_coord + y_coord
+      if tempCoord not in filled_spaces_black and tempCoord not in filled_spaces_white:
+        checkDirection(color, x_coord, y_coord)
+        if isReadyToPlace == True:
+          if piecesFlipped >= tempPiecesFlipped:
+            tempPiecesFlipped = piecesFlipped
+  # creates a list of all coords which flip the same num of max pieces          
+  for x_coord in x:
+    for y_coord in y:
+      tempCoord = x_coord + y_coord
+      if tempCoord not in filled_spaces_black and tempCoord not in filled_spaces_white:
+        checkDirection(color, x_coord, y_coord)
+        if isReadyToPlace == True:
+          if piecesFlipped == tempPiecesFlipped:
+            liCoords.append(tempCoord)
+  if len(liCoords) != 0:
+    finalBotCoord = random.choice(liCoords)
+  else:
+    if whiteTurn == True:
+      print(Fore.YELLOW + "No possible moves found")
+    else:
+      print(Fore.BLUE + "No possible moves found")
+    endGame()
 
 #8 ------------------------------------------------------------------------------------------------------------
 # Keeps track of white and black pieces on the board currently
@@ -683,3 +754,11 @@ def scoreBoard():
       time.sleep(1)
     print("Goodbye" + Fore.RESET)
     exit()
+
+#10 ------------------------------------------------------------------------------------------------------------
+def endGame():
+    for i in range (5, 0, -1):
+      print(Fore.RED + "Loading scoreboard", str(i) + "..." + Fore.GREEN)
+      time.sleep(1)
+    print("Game Over" + Fore.RESET)
+    scoreBoard()
